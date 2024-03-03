@@ -10,6 +10,7 @@ import ViewCreate from './pages/ViewCreate.jsx';
 import View from './pages/View.jsx';
 import Create from './pages/Create.jsx';
 import SignUp from './pages/SignUp.jsx'
+import Error from './pages/Error.jsx'
 
 
 
