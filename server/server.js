@@ -1,4 +1,5 @@
 const express = require('express');
+const db = require('./config/connection');
 
 const app = express();
 
@@ -11,7 +12,9 @@ app.get('/', (req, res) => {
      res.send('Testing server entry point');
 });
 
-app.listen(PORT, () => { 
-     console.log(`Server listening on port ${PORT}`);
+db.once('open', () => {
+     app.listen(PORT, () => {
+          console.log(`Server listening on port ${PORT}`);
+     });
 });
 
