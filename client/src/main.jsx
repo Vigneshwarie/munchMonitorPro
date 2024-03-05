@@ -9,7 +9,7 @@ import SignLogin from './pages/SignLogin.jsx'
 import ViewCreate from './pages/ViewCreate.jsx';
 import View from './pages/View.jsx';
 import Create from './pages/Create.jsx';
-import SignUp from './pages/SignUp.jsx'
+import CreateProfile from './pages/CreateProfile.jsx'
 import Error from './pages/Error.jsx'
 
 
@@ -41,8 +41,8 @@ const router = createBrowserRouter([
         element: <Create />,
       },
       {
-        path: '/SignUp',
-        element: <SignUp />,
+        path: '/CreateProfile',
+        element: <CreateProfile />,
       },
     ],
   },
