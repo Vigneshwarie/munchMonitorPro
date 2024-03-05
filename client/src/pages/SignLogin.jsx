@@ -1,35 +1,30 @@
 
 import React from 'react';
 import 'bulma/css/bulma.min.css';
-import { Field, Label, Control, Input } from 'react-bulma-components';
+import { Form, } from 'react-bulma-components';
+//  Field, Label, Control, Input
 
 export default function SignLogin() {
     return (
         <>
             <h2>THIS IS THE Sign Up/Login PAGE</h2>
 
-            <Field>
-                <Label>
-                    Username
-                </Label>
-                <Control>
-                    <Input
                         placeholder="e.g. John Doe"
-                        type="text"
+                        type="email"
                     />
-                </Control>
-            </Field>
-            <Field>
-                <Label>
+                </Form.Control>
+            </Form.Field>
+            <Form.Field>
+                <Form.Label>
                     Password
-                </Label>
-                <Control>
-                    <Input
+                </Form.Label>
+                <Form.Control>
+                    <Form.Input
                         placeholder="password"
                         type="password"
                     />
-                </Control>
-            </Field>
+                </Form.Control>
+            </Form.Field>
 
 
             <Field>
@@ -91,5 +86,5 @@ export default function SignLogin() {
             </Field>
             
         </>
-    )
+    );
 }
