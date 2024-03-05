@@ -9,7 +9,57 @@ export default function SignLogin() {
         <>
             <h2>THIS IS THE Sign Up/Login PAGE</h2>
 
+            <Form.Field>
+                <Form.Label>
+                    Username
+                </Form.Label>
+                <Form.Control>
+                    <Form.Input
                         placeholder="e.g. John Doe"
+                        type="text"
+                    />
+                </Form.Control>
+            </Form.Field>
+            <Form.Field>
+                <Form.Label>
+                    Password
+                </Form.Label>
+                <Form.Control>
+                    <Form.Input
+                        placeholder="password"
+                        type="password"
+                    />
+                </Form.Control>
+            </Form.Field>
+            <Form.Field>
+                <Form.Label>
+                    First Name
+                </Form.Label>
+                <Form.Control>
+                    <Form.Input
+                        placeholder="e.g. John"
+                        type="text"
+                    />
+                </Form.Control>
+            </Form.Field>
+            <Form.Field>
+                <Form.Label>
+                    Last Name
+                </Form.Label>
+                <Form.Control>
+                    <Form.Input
+                        placeholder=" Smith"
+                        type="text"
+                    />
+                </Form.Control>
+            </Form.Field>
+            <Form.Field>
+                <Form.Label>
+                    Email
+                </Form.Label>
+                <Form.Control>
+                    <Form.Input
+                        placeholder="e.g. test@test.com"
                         type="email"
                     />
                 </Form.Control>
@@ -25,66 +75,17 @@ export default function SignLogin() {
                     />
                 </Form.Control>
             </Form.Field>
-
-
-            <Field>
-                <Label>
-                    First Name
-                </Label>
-                <Control>
-                    <Input
-                        placeholder="e.g. John"
-                        type="text"
-                    />
-                </Control>
-            </Field>
-            <Field>
-                <Label>
-                    Last Name
-                </Label>
-                <Control>
-                    <Input
-                        placeholder=" Smith"
-                        type="text"
-                    />
-                </Control>
-            </Field>
-
-
-            <Field>
-                <Label>
-                    Email
-                </Label>
-                <Control>
-                    <Input
-                        placeholder="e.g. test@test.com"
-                        type="email"
-                    />
-                </Control>
-            </Field>
-            <Field>
-                <Label>
-                    Password
-                </Label>
-                <Control>
-                    <Input
-                        placeholder="password"
-                        type="password"
-                    />
-                </Control>
-            </Field>
-            <Field>
-                <Label>
+            <Form.Field>
+                <Form.Label>
                     Confirm Password
-                </Label>
-                <Control>
-                    <Input
+                </Form.Label>
+                <Form.Control>
+                    <Form.Input
                         placeholder="confirm password"
                         type="password"
                     />
-                </Control>
-            </Field>
-            
+                </Form.Control>
+            </Form.Field>
         </>
-    );
+    )
 }
