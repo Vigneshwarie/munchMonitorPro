@@ -33,7 +33,7 @@ const typeDefs = `
      }
   
      type Query {
-          users: User
+          user: User
           pet(_id: ID!): Pet
      }
 
