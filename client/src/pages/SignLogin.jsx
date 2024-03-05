@@ -9,13 +9,6 @@ export default function SignLogin() {
         <>
             <h2>THIS IS THE Sign Up/Login PAGE</h2>
 
-
-            <Form.Field>
-                <Form.Label>
-                    E-mail
-                </Form.Label>
-                <Form.Control>
-                    <Form.Input
                         placeholder="e.g. John Doe"
                         type="email"
                     />
@@ -34,6 +27,64 @@ export default function SignLogin() {
             </Form.Field>
 
 
+            <Field>
+                <Label>
+                    First Name
+                </Label>
+                <Control>
+                    <Input
+                        placeholder="e.g. John"
+                        type="text"
+                    />
+                </Control>
+            </Field>
+            <Field>
+                <Label>
+                    Last Name
+                </Label>
+                <Control>
+                    <Input
+                        placeholder=" Smith"
+                        type="text"
+                    />
+                </Control>
+            </Field>
+
+
+            <Field>
+                <Label>
+                    Email
+                </Label>
+                <Control>
+                    <Input
+                        placeholder="e.g. test@test.com"
+                        type="email"
+                    />
+                </Control>
+            </Field>
+            <Field>
+                <Label>
+                    Password
+                </Label>
+                <Control>
+                    <Input
+                        placeholder="password"
+                        type="password"
+                    />
+                </Control>
+            </Field>
+            <Field>
+                <Label>
+                    Confirm Password
+                </Label>
+                <Control>
+                    <Input
+                        placeholder="confirm password"
+                        type="password"
+                    />
+                </Control>
+            </Field>
+            
         </>
     );
 }
