@@ -1,4 +1,4 @@
-const { Schema } = require('mongoose');
+const { Schema, model } = require('mongoose');
 
 const petSchema = new Schema(
      {
@@ -18,4 +18,6 @@ const petSchema = new Schema(
      }
 );
 
-module.exports = petSchema;
+const Pet = model('Pet', petSchema);
+
+module.exports = Pet;

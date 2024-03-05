@@ -1,14 +1,15 @@
 const { Schema, model } = require('mongoose');
 
-const petSchema = require('./Pet');
-
 const feederSchema = new Schema(
      {
           feed_date: {
                type: String,
                required: true,
           },
-          pet_id: petSchema,
+          pet_id: {
+               type: Schema.Types.ObjectId,
+               ref:'Pet'
+          },
           breakfast_food_type: {
                type: String,
                required: true,
