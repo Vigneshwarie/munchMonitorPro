@@ -8,7 +8,7 @@ function NavTabs() {
       <div className="nav-item">
         <Link
           to="/"
-          className={currentPage === '/Entry' ? 'nav-link active' : 'nav-link'}
+          className={currentPage === '/' ? 'nav-link active' : 'nav-link'}
         >
           Entry
         </Link>
