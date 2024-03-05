@@ -3,7 +3,7 @@ const { Schema, model } = require('mongoose');
 const feederSchema = new Schema(
      {
           feed_date: {
-               type: String,
+               type: Date,
                required: true,
           },
           pet_id: {
