@@ -1,5 +1,6 @@
 # Group Project: munchMonitorPro
 - An application to track and monitor pet's food.
+
 ## Description
 - Description goes here
 
