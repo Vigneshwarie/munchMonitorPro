@@ -1,4 +1,5 @@
 const { User, Pet, Feeder } = require('../models');
+const { AuthenticationError, signToken } = require('../utils/auth');
 
 const resolvers = {
      Query: {
@@ -25,7 +26,18 @@ const resolvers = {
           login: async (parent, { email, password }) => {
                try {
                     const user = await User.findOne({ email });
+                    if (!user) {
+                         throw AuthenticationError;
+                    }
+
                     const correctPw = await user.isCorrectPassword(password);
+                    if (!correctPw) {
+                         throw AuthenticationError;
+                    }
+
+                    const token = signToken(user);
+                    return { token, user };
+
                } catch (err) {
                     console.log('Error in mutation while logging in: ', err);
                }
@@ -33,7 +45,8 @@ const resolvers = {
           addUser: async (parent, args) => {
                try {
                     const user = await User.create(args);
-                    return user;
+                    const token = signToken(user);
+                    return { token, user };
                } catch (err) {
                     console.log('Error in mutation while adding user: ', err);
                }
