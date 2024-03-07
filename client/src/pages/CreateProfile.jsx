@@ -1,9 +1,8 @@
 import React from 'react';
 import { Form, Field, Control, Textarea, Message } from 'react-bulma-components';
-// import { DropdownMenu } from 'react-bootstrap';
-import AnimalDropdown from '../components/AnimalDropdown';
 import Dropdown2 from '../components/dropdown2';
 import Dropdowngender from '../components/dropdowngender';
+import TextareaPage from '../components/Textarea';
 
 export default function CreateProfile() {
     return (
@@ -26,15 +25,9 @@ export default function CreateProfile() {
             <br />
             <Dropdowngender />
             <br />
+            <TextareaPage />
 
-            <Message.Field>
-                <Message.Control>
-                    <Message.Textarea
-                        placeholder="I am a textarea"
-                    />
-                </Message.Control>
-            </Message.Field>
-
+      
 
         </>
 
