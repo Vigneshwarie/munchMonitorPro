@@ -35,8 +35,25 @@
 
 .card {
   padding: 2em;
+  margin: 25px;
+
 }
 
 .read-the-docs {
   color: #888;
+}
+
+.createbutton {
+  margin: 25px;
+}
+
+.signinpic {
+  margin: 25px;
+}
+.signuppic {
+  margin: 25px;
+}
+
+.dropdown{
+  margin: 25px;
 }
