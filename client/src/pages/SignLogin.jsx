@@ -1,7 +1,9 @@
-
 import React from 'react';
 import 'bulma/css/bulma.min.css';
 import { Form, } from 'react-bulma-components';
+import Signinpic from '../assets/mmprosignin.png';
+import Signuppic from '../assets/mmprosignup.png';
+
 //  Field, Label, Control, Input
 
 export default function SignLogin() {
@@ -9,9 +11,11 @@ export default function SignLogin() {
         <>
             <h2>THIS IS THE Sign Up/Login PAGE</h2>
 
+            <  img src={Signinpic} className="signinpic" />
+
             <Form.Field>
                 <Form.Label>
-                    Username
+                    email
                 </Form.Label>
                 <Form.Control>
                     <Form.Input
@@ -31,6 +35,9 @@ export default function SignLogin() {
                     />
                 </Form.Control>
             </Form.Field>
+
+            <  img src={Signuppic} className="signinpic" />
+            
             <Form.Field>
                 <Form.Label>
                     First Name
