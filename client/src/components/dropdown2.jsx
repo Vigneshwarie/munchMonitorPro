@@ -1,7 +1,5 @@
 import Dropdown from 'react-bootstrap/Dropdown';
 
-
-
 function Dropdown2() {
   return (
     <Dropdown>
