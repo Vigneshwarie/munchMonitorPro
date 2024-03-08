@@ -1,12 +1,11 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import 'bulma/css/bulma.min.css';
-import { Form, } from 'react-bulma-components';
-import { Button } from 'react-bootstrap';
 
-import { loginUser } from '../utils/API';
+import { Form, Button, Alert } from 'react-bootstrap';
+
 import { useMutation } from '@apollo/client';
-import { ADD_USER } from '../utils/mutations';
+import { ADD_USER } from '../utils/mutation';
 import Auth from '../utils/auth';
 import Signinpic from '../assets/mmprosignin.png';
 import Signuppic from '../assets/mmprosignup.png';
@@ -15,10 +14,13 @@ import Signuppic from '../assets/mmprosignup.png';
 
 export default function SignLogin() {
     const [userFormData, setUserFormData] = useState({
+        firstname: '',
+        lastname:'',
         email: '',
         password: '',
     });
     const [validated] = useState(false);
+
     const [showAlert, setShowAlert] = useState(false);
 
     const [addUser, { error }] = useMutation(ADD_USER);
@@ -37,6 +39,7 @@ export default function SignLogin() {
     };
 
     const handleFormSubmit = async (event) => {
+        console.log(1234);
         event.preventDefault();
 
         // check if form has everything (as per react-bootstrap docs)
@@ -53,11 +56,12 @@ export default function SignLogin() {
             console.log(data);
             Auth.login(data.addUser.token);
         } catch (err) {
-            console.error(err);
+            console.log(err);
         }
 
         setUserFormData({
-            username: '',
+            firstname: '',
+            lastname:'',
             email: '',
             password: '',
         });
@@ -66,121 +70,70 @@ export default function SignLogin() {
 
     return (
         <>
-            <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
-
-                <Alert
-                    dismissible
-                    onClose={() => setShowAlert(false)}
-                    show={showAlert}
-                    variant="danger"
-                >
-                    Something went wrong with your signup!
+           <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
+               {/* show alert if server response is bad */}
+                <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
+                        Something went wrong with your signup!
                 </Alert>
 
-                <  img src={Signinpic} className="signinpic" />
-
-                <Form.Field>
-                    <Form.Label>
-                        email
-                    </Form.Label>
-                    <Form.Control>
-                        <Form.Input
-                            placeholder="e.g. John Doe"
-                            type="text"
+                    <Form.Group className='mb-3'>
+                        <Form.Label htmlFor='firstname'>First Name</Form.Label>
+                        <Form.Control
+                            type='text'
+                            placeholder='Enter your first name'
+                            name='firstname'
+                            onChange={handleInputChange}
+                            value={userFormData.firstname}
+                            required
                         />
-                    </Form.Control>
-                </Form.Field>
+                        <Form.Control.Feedback type='invalid'>First Name is required!</Form.Control.Feedback>
+                </Form.Group>
 
-                <Form.Field>
-                    <Form.Label>
-                        Password
-                    </Form.Label>
-                    <Form.Control>
-                        <Form.Input
-                            placeholder="password"
-                            type="password"
+                <Form.Group className='mb-3'>
+                        <Form.Label htmlFor='lastname'>Last Name</Form.Label>
+                        <Form.Control
+                            type='text'
+                            placeholder='Enter your last name'
+                            name='lastname'
+                            onChange={handleInputChange}
+                            value={userFormData.lastname}
+                            required
                         />
-                    </Form.Control>
-                </Form.Field>
+                        <Form.Control.Feedback type='invalid'>Last Name is required!</Form.Control.Feedback>
+                </Form.Group>
 
-                <Button variant="info">Login</Button>{' '}
-                <br />
+                <Form.Group className='mb-3'>
+                        <Form.Label htmlFor='email'>Email</Form.Label>
+                        <Form.Control
+                            type='email'
+                            placeholder='Your email address'
+                            name='email'
+                            onChange={handleInputChange}
+                            value={userFormData.email}
+                            required
+                        />
+                        <Form.Control.Feedback type='invalid'>Email is required!</Form.Control.Feedback>
+                </Form.Group>
 
-                <  img src={Signuppic} className="signinpic" />
-
-                <Form.Field>
-                    <Form.Label htmlFor='firstname'>Username</Form.Label>
-                    <Form.Control
-                        type='text'
-                        placeholder='First Name'
-                        name='firstname'
-                        onChange={handleInputChange}
-                        value={userFormData.username}
-                        required
-                    />
-                    <Form.Control.Feedback type='invalid'>Please enter your First name!</Form.Control.Feedback>
-                </Form.Field>
-
-                <Form.Field>
-                    <Form.Label htmlFor='lastname'>Username</Form.Label>
-                    <Form.Control
-                        type='text'
-                        placeholder='Last Name'
-                        name='lastname'
-                        onChange={handleInputChange}
-                        value={userFormData.username}
-                        required
-                    />
-                    <Form.Control.Feedback type='invalid'>Please enter your Last name!</Form.Control.Feedback>
-                </Form.Field>
-
-                <Form.Field>
-                    <Form.Label htmlFor='email'>Email</Form.Label>
-                    <Form.Control
-                        type='email'
-                        placeholder='Your email address'
-                        name='email'
-                        onChange={handleInputChange}
-                        value={userFormData.email}
-                        required
-                    />
-                    <Form.Control.Feedback type='invalid'>Email is required!</Form.Control.Feedback>
-
-                </Form.Field>
-
-                <Form.Field>
-                    <Form.Label htmlFor='password'>Password</Form.Label>
-                    <Form.Control
-                        type='password'
-                        placeholder='Your password'
-                        name='password'
-                        onChange={handleInputChange}
-                        value={userFormData.password}
-                        required
-                    />
-                    <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
-
-                </Form.Field>
-
-                <Form.Field>
-                    <Form.Label htmlFor='password'>Password</Form.Label>
-                    <Form.Control
-                        type='password'
-                        placeholder='Confirm password'
-                        name='password'
-                        onChange={handleInputChange}
-                        value={userFormData.password}
-                        required
-                    />
-                    <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
-                </Form.Field>
-
+                <Form.Group className='mb-3'>
+                        <Form.Label htmlFor='password'>Password</Form.Label>
+                        <Form.Control
+                            type='password'
+                            placeholder='Your password'
+                            name='password'
+                            onChange={handleInputChange}
+                            value={userFormData.password}
+                            required
+                        />
+                        <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
+                </Form.Group>
                 <Button
-                    // variant="info" 
-                    disabled={!(userFormData.username && userFormData.email && userFormData.password)}
-                    type='submit'
-                    variant='success'>Sign Up!</Button>
+                        disabled={!(userFormData.firstname && userFormData.lastname && userFormData.email && userFormData.password)}
+                        type='submit'
+                        variant='success'>
+                        Submit
+                </Button>
             </Form>
         </>
-    )
+    );
 }

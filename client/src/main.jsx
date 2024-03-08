@@ -5,7 +5,7 @@ import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import Entry from './pages/Entry.jsx'
-import SignLogin from './pages/SignLogin.jsx'
+import SignLogin from './pages/SignLogin'
 import ViewCreate from './pages/ViewCreate.jsx';
 import View from './pages/View.jsx';
 import Create from './pages/Create.jsx';
