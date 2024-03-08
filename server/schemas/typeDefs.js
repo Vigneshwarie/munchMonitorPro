@@ -1,3 +1,4 @@
+// Updated the Date to String for Feed date data and modified the Pet to the ID.
 const typeDefs = `
      type User {
           _id: ID!
@@ -17,8 +18,8 @@ const typeDefs = `
 
      type Feeder {
           _id: ID!
-          feed_date: Date!
-          pet_id: Pet
+          feed_date: String!
+          pet_id: ID
           breakfast_food_type: String
           medicine_morning: String
           lunch_food_type: String
@@ -43,7 +44,7 @@ const typeDefs = `
           addPet(pet_name: String!, pet_type: String, pet_sex: String, pet_notes: String): Pet
           editPet(id: ID!, pet_notes: String): Pet
           deletePet(id: ID!): Pet
-          createFeeder(feed_date: Date!, pet_id: Pet, breakfast_food_type: String, medicine_morning: String, lunch_food_type: String, medicine_afternoon: String, dinner_food_type: String, medicine_evening: String): Feeder
+          createFeeder(feed_date: String!, pet_id: ID, breakfast_food_type: String, medicine_morning: String, lunch_food_type: String, medicine_afternoon: String, dinner_food_type: String, medicine_evening: String): Feeder
           editFeeder(id: ID!, breakfast_food_type: String, medicine_morning: String, lunch_food_type: String, medicine_afternoon: String, dinner_food_type: String, medicine_evening: String): Feeder
      }
 `;

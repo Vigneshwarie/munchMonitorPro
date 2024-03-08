@@ -14,8 +14,8 @@ import Signuppic from '../assets/mmprosignup.png';
 
 export default function SignLogin() {
     const [userFormData, setUserFormData] = useState({
-        firstname: '',
-        lastname:'',
+        first_name: '',
+        last_name:'',
         email: '',
         password: '',
     });
@@ -60,8 +60,8 @@ export default function SignLogin() {
         }
 
         setUserFormData({
-            firstname: '',
-            lastname:'',
+            first_name: '',
+            last_name:'',
             email: '',
             password: '',
         });
@@ -77,26 +77,26 @@ export default function SignLogin() {
                 </Alert>
 
                     <Form.Group className='mb-3'>
-                        <Form.Label htmlFor='firstname'>First Name</Form.Label>
+                        <Form.Label htmlFor='first_name'>First Name</Form.Label>
                         <Form.Control
                             type='text'
                             placeholder='Enter your first name'
-                            name='firstname'
+                            name='first_name'
                             onChange={handleInputChange}
-                            value={userFormData.firstname}
+                            value={userFormData.first_name}
                             required
                         />
                         <Form.Control.Feedback type='invalid'>First Name is required!</Form.Control.Feedback>
                 </Form.Group>
 
                 <Form.Group className='mb-3'>
-                        <Form.Label htmlFor='lastname'>Last Name</Form.Label>
+                        <Form.Label htmlFor='last_name'>Last Name</Form.Label>
                         <Form.Control
                             type='text'
                             placeholder='Enter your last name'
-                            name='lastname'
+                            name='last_name'
                             onChange={handleInputChange}
-                            value={userFormData.lastname}
+                            value={userFormData.last_name}
                             required
                         />
                         <Form.Control.Feedback type='invalid'>Last Name is required!</Form.Control.Feedback>
@@ -128,7 +128,7 @@ export default function SignLogin() {
                         <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
                 </Form.Group>
                 <Button
-                        disabled={!(userFormData.firstname && userFormData.lastname && userFormData.email && userFormData.password)}
+                        disabled={!(userFormData.first_name && userFormData.last_name && userFormData.email && userFormData.password)}
                         type='submit'
                         variant='success'>
                         Submit

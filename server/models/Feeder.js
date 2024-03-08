@@ -5,6 +5,7 @@ const feederSchema = new Schema(
           feed_date: {
                type: Date,
                required: true,
+               default: Date.now
           },
           pet_id: {
                type: Schema.Types.ObjectId,

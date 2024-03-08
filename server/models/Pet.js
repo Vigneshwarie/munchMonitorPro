@@ -1,4 +1,7 @@
-const { Schema, model } = require('mongoose');
+const mongoose = require('mongoose');
+const { Schema } = mongoose;
+
+// This should be a schema as we use this in the User model.
 
 const petSchema = new Schema(
      {
@@ -18,6 +21,5 @@ const petSchema = new Schema(
      }
 );
 
-const Pet = model('Pet', petSchema);
 
-module.exports = Pet;
+module.exports = petSchema;
