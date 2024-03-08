@@ -49,6 +49,7 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+  
 }
 button:hover {
   border-color: #646cff;
@@ -75,3 +76,8 @@ button:focus-visible {
   justify-content: center;
   align-items: center;
 }
+
+.Header {
+  max-height: 20vh;
+}
+
