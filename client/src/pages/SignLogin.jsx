@@ -1,6 +1,8 @@
 import React from 'react';
 import 'bulma/css/bulma.min.css';
 import { Form, } from 'react-bulma-components';
+import { Button } from 'react-bootstrap'
+
 import Signinpic from '../assets/mmprosignin.png';
 import Signuppic from '../assets/mmprosignup.png';
 
@@ -35,6 +37,9 @@ export default function SignLogin() {
                     />
                 </Form.Control>
             </Form.Field>
+
+            <Button variant="info">Login</Button>{' '}
+<br />
 
             <  img src={Signuppic} className="signinpic" />
             
@@ -93,6 +98,8 @@ export default function SignLogin() {
                     />
                 </Form.Control>
             </Form.Field>
+
+            <Button variant="info">Sign Up!</Button>{' '}
         </>
     )
 }

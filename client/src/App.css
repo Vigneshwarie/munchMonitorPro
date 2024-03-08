@@ -3,6 +3,9 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  background-color: #9877ed;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .logo {
