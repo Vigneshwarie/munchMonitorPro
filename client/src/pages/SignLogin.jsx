@@ -2,8 +2,9 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import 'bulma/css/bulma.min.css';
 import { Form, } from 'react-bulma-components';
-import { Button } from 'react-bootstrap'
+import { Button } from 'react-bootstrap';
 
+import { loginUser } from '../utils/API';
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
@@ -132,7 +133,7 @@ export default function SignLogin() {
                     />
                     <Form.Control.Feedback type='invalid'>Please enter your Last name!</Form.Control.Feedback>
                 </Form.Field>
-//------------------------------------------------------------------------------------------------------
+
                 <Form.Field>
                     <Form.Label htmlFor='email'>Email</Form.Label>
                     <Form.Control
@@ -146,7 +147,7 @@ export default function SignLogin() {
                     <Form.Control.Feedback type='invalid'>Email is required!</Form.Control.Feedback>
 
                 </Form.Field>
-//-------------------------------------------------------------------------------------------------
+
                 <Form.Field>
                     <Form.Label htmlFor='password'>Password</Form.Label>
                     <Form.Control
@@ -160,7 +161,7 @@ export default function SignLogin() {
                     <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
 
                 </Form.Field>
-//-----------------------------------------------------------------------------------------------
+
                 <Form.Field>
                     <Form.Label htmlFor='password'>Password</Form.Label>
                     <Form.Control
@@ -173,7 +174,7 @@ export default function SignLogin() {
                     />
                     <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
                 </Form.Field>
-//-----------------------------------------------------------------------------------------------------------------
+
                 <Button
                     // variant="info" 
                     disabled={!(userFormData.username && userFormData.email && userFormData.password)}
