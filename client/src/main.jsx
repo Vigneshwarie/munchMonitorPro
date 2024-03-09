@@ -11,6 +11,8 @@ import Create from './pages/Create.jsx';
 import CreateProfile from './pages/CreateProfile.jsx'
 import Error from './pages/Error.jsx'
 import Feeder from './pages/Feeder.jsx';
+import LoginPage from './pages/LoginPage.jsx';
+
 
 
 
@@ -43,6 +45,10 @@ const router = createBrowserRouter([
       {
         path: '/CreateProfile',
         element: <CreateProfile />,
+      },
+      {
+        path: '/LoginPage',
+        element: <LoginPage />,
       },
     ],
   },
