@@ -53,6 +53,14 @@ function NavTabs() {
          Create Profile
         </Link>
       </div>
+      <div className="nav-item">
+        <Link
+          to="LoginPage"
+          className={currentPage === '/LoginPage' ? 'nav-link active' : 'nav-link'}
+        >
+         LoginPage
+        </Link>
+      </div>
     </div>
   );
 }
