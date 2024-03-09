@@ -4,7 +4,6 @@ import App from './App.jsx'
 import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-import Entry from './pages/Entry.jsx'
 import SignLogin from './pages/SignLogin'
 import ViewCreate from './pages/ViewCreate.jsx';
 import Create from './pages/Create.jsx';
@@ -12,7 +11,7 @@ import CreateProfile from './pages/CreateProfile.jsx'
 import Error from './pages/Error.jsx'
 import Feeder from './pages/Feeder.jsx';
 import LoginPage from './pages/LoginPage.jsx';
-
+import Homepage from './pages/Homepage.jsx';
 
 
 
@@ -24,11 +23,15 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Entry />,
+        element: <LoginPage />,
       },
       {
         path: '/SignLogin',
         element: <SignLogin />,
+      },
+      {
+        path: '/homepage',
+        element: <Homepage />,
       },
       {
         path: '/ViewCreate',
