@@ -7,10 +7,10 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Entry from './pages/Entry.jsx'
 import SignLogin from './pages/SignLogin'
 import ViewCreate from './pages/ViewCreate.jsx';
-import View from './pages/View.jsx';
 import Create from './pages/Create.jsx';
 import CreateProfile from './pages/CreateProfile.jsx'
 import Error from './pages/Error.jsx'
+import Feeder from './pages/Feeder.jsx';
 
 
 
@@ -33,8 +33,8 @@ const router = createBrowserRouter([
         element: <ViewCreate />,
       },
       {
-        path: '/View',
-        element: <View />,
+        path: '/Feeder',
+        element: <Feeder />,
       },
       {
         path: '/Create',
