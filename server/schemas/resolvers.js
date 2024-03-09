@@ -35,8 +35,15 @@ const resolvers = {
                          throw AuthenticationError;
                     }
 
+                //    console.log(user);
+                //    console.log(user.first_name);
+                //    console.log(user.last_name);
+
                     const token = signToken(user);
+                //    console.log(token);
+                    // While testing Loginform this returns the user details and token.
                     return { token, user };
+                    
 
                } catch (err) {
                     console.log('Error in mutation while logging in: ', err);
