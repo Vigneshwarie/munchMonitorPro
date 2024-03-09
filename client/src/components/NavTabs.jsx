@@ -31,10 +31,10 @@ function NavTabs() {
       </div>
       <div className="nav-item">
         <Link
-          to="/View"
-          className={currentPage === '/View' ? 'nav-link active' : 'nav-link'}
+          to="/Feeder"
+          className={currentPage === '/Feeder' ? 'nav-link active' : 'nav-link'}
         >
-          View
+          Feeder
         </Link>
       </div>
       <div className="nav-item">
