@@ -1,7 +1,9 @@
+import meetdevs from '../assets/meetdevs.png'
+
 export default function Footer(){
     return(
         <>
-        <h1>This is the footer</h1>
+        <img src={meetdevs} className="meetdevs" />
         </>
     )
 }

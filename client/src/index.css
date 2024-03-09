@@ -81,3 +81,8 @@ button:focus-visible {
   max-height: 20vh;
 }
 
+.meetdevs {
+  max-width: 100px;
+  max-height: 50px;
+  margin: 50px;
+}
