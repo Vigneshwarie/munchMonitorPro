@@ -2,27 +2,58 @@ import React from 'react';
 import { Button, Form, Alert } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 import '../assets/styles/Profile.css';
+import { useMutation } from '@apollo/client';
+import { ADD_PET } from '../utils/mutation';
 
 export default function Profile() {
      const [userFormData, setUserFormData] = useState({
-        pet_name: '',
-        pet_type: '',
-        pet_sex: '',
-        pet_notes: '',
+          pet_name: '',
+          pet_type: '',
+          pet_sex: '',
+          pet_notes: '',
      });
-     
+
      const [validated] = useState(false);
+     const [showAlert, setShowAlert] = useState(false);
+     const [addPet, { error }] = useMutation(ADD_PET);
+
+     useEffect(() => {
+          if (error) {
+               setShowAlert(true);
+          } else {
+               setShowAlert(false);
+          }
+    }, [error]);
 
      const handleInputChange = (event) => {
           const { name, value } = event.target;
           setUserFormData({ ...userFormData, [name]: value });
      };
 
-     
-
      const handleFormSubmit = async (event) => { 
           event.preventDefault(); 
-          
+          const form = event.currentTarget;
+
+          if (form.checkValidity() === false) {
+               event.preventDefault();
+               event.stopPropagation();
+          }
+
+          try {
+               const { data } = await addPet({
+                    variables: { ...userFormData },
+               });
+               console.log(data);
+          } catch (err) {
+               console.log(err);
+          }
+
+          setUserFormData({
+               pet_name: '',
+               pet_type: '',
+               pet_sex: '',
+               pet_notes: '',
+          });
      };
 
      function onCancelbtn() {
@@ -34,6 +65,10 @@ export default function Profile() {
                <div>
                     <h1>Pet Profile</h1>
                     <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
+                         <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
+                              Error while saving the Pet info!
+                         </Alert>
+
                          <Form.Group className='mb-3'>
                               <Form.Control
                               type='text'
@@ -48,8 +83,8 @@ export default function Profile() {
 
                          <Form.Group className='mb-3'> 
                               <Form.Control as="select" name='pet_type'
-                                   custom onChange={handleInputChange}> 
-                                   <option selected>Choose Pet Type</option>
+                                   onChange={handleInputChange}> 
+                                   <option defaultValue={""}>Choose Pet Type</option>
                                    <option value="Cat">Cat</option> 
                                    <option value="Dog">Dog</option> 
                                    <option value="Bird">Bird</option> 
@@ -61,8 +96,8 @@ export default function Profile() {
 
                          <Form.Group className='mb-3'> 
                               <Form.Control as="select" name='pet_sex'
-                                   custom onChange={handleInputChange}> 
-                                   <option selected>Choose Pet Sex</option>
+                                   onChange={handleInputChange}> 
+                                   <option defaultValue={""}>Choose Pet Sex</option>
                                    <option value="Male">Male</option> 
                                    <option value="Female">Female</option> 
                               </Form.Control> 
@@ -78,7 +113,7 @@ export default function Profile() {
 
                          <br />
                          <Button
-                         // disabled={!(userFormData.petname && userFormData.petsex && userFormData.pettype && userFormData.petnotes)}
+                          disabled={!(userFormData.pet_name)}
                          type='submit' className="savebutton"> Save Pet </Button>
                          <Button type='button' className="cancelbutton" onClick={onCancelbtn}>Cancel</Button>
                          <br />      
