@@ -91,7 +91,6 @@ export default function Profile() {
                                    <option value="Turtle">Turtle</option> 
                                    <option value="Hamster">Hamster</option> 
                               </Form.Control> 
-                              <Form.Control.Feedback type='invalid'>Pet type is required!</Form.Control.Feedback>
                          </Form.Group> 
 
                          <Form.Group className='mb-3'> 
@@ -101,14 +100,12 @@ export default function Profile() {
                                    <option value="Male">Male</option> 
                                    <option value="Female">Female</option> 
                               </Form.Control> 
-                              <Form.Control.Feedback type='invalid'>Pet sex is required!</Form.Control.Feedback>
                          </Form.Group> 
 
                          <Form.Group className='mb-3'> 
                               <Form.Control name='pet_notes' as='textarea' rows="5"
-                              placeholder="Pet's Notes"> 
+                              placeholder="Pet's Notes">
                               </Form.Control> 
-                              <Form.Control.Feedback type='invalid'>Pet notes is required!</Form.Control.Feedback>
                          </Form.Group> 
 
                          <br />

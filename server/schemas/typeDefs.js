@@ -1,4 +1,5 @@
 // Updated the Date to String for Feed date data and modified the Pet to the ID.
+// Add Pet, edit pet and delete pet should return a user as it is a schema to the user.
 const typeDefs = `
      type User {
           _id: ID!
@@ -41,9 +42,9 @@ const typeDefs = `
      type Mutation {
           login(email: String!, password: String!): Auth
           addUser(first_name: String!, last_name: String!, email: String!, password: String!): Auth
-          addPet(pet_name: String!, pet_type: String, pet_sex: String, pet_notes: String): Pet
-          editPet(id: ID!, pet_notes: String): Pet
-          deletePet(id: ID!): Pet
+          addPet(pet_name: String!, pet_type: String, pet_sex: String, pet_notes: String): User
+          editPet(id: ID!, pet_notes: String): User
+          deletePet(id: ID!): User
           createFeeder(feed_date: String!, pet_id: ID, breakfast_food_type: String, medicine_morning: String, lunch_food_type: String, medicine_afternoon: String, dinner_food_type: String, medicine_evening: String): Feeder
           editFeeder(id: ID!, breakfast_food_type: String, medicine_morning: String, lunch_food_type: String, medicine_afternoon: String, dinner_food_type: String, medicine_evening: String): Feeder
      }
