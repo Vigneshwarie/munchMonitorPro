@@ -4,7 +4,7 @@ import Col from 'react-bootstrap/Col';
 
 function GreetingContainer() {
   return (
-    <Container >
+    <Container className="greetingcont" >
       <Row>
         <Col> <strong>Greetings!</strong> **name here**</Col>
       </Row>
