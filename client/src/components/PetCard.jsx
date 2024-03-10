@@ -8,12 +8,30 @@ import { DELETE_PET } from '../utils/mutations';
 function PetCard() {
   const { loading, data } = useQuery(QUERY_PET);
   let userData = data?.me || {}
-    const userDataLength = Object.keys(userData).length;
-  }
-   const [deletePet, { error }] = useMutation(DELETE_PET)
+  const userDataLength = Object.keys(userData).length;
+}
+const [deletePet, { error }] = useMutation(DELETE_PET)
 
-  return (
-    <>
+const handleDeletePet = async (_id) => {
+  const token = Auth.loggedIn() ? Auth.getToken() : null;
+  if (!token) {
+    return false;
+  }
+  try {
+    const { data } = await deletePet({
+      variables: { _id }
+    });
+
+    // here we need to update current data.
+  } catch (error) {
+    console.log(error);
+
+  }
+}
+
+
+return (
+  <>
     <Card className="PetProCard" style={{ width: '18rem' }}>
       <Card.Img variant="top" src={PetImage} />
       <Card.Body>
@@ -31,29 +49,29 @@ function PetCard() {
         <Button
           type='submit'
           className="editbutton"
-          // onClick={editbutton}
+        // onClick={editbutton}
         >
           Edit Button
         </Button>
         <Button
           type='submit'
           className="savebutton"
-          // onClick={editbutton}
+        // onClick={editbutton}
         >
           Save Pet
         </Button>
         <Button
           type='submit'
           className="deletebutton"
-          // onClick={deletebutton}
+        // onClick={deletebutton}
         >
           Delete Button
         </Button>
 
       </Card.Body>
     </Card>
-    </>
-  );
+  </>
+);
 }
 
 export default PetCard;
