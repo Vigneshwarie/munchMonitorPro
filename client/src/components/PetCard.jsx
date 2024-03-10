@@ -1,10 +1,14 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import PetImage from '../assets/petimage.png'
-
+import { useQuery } from '@apollo/client';
+import { QUERY_PET } from '../utils/queries';
 
 function PetCard() {
+  const { loading, data } = useQuery(QUERY_PET);
+
   return (
+    <>
     <Card className="PetProCard" style={{ width: '18rem' }}>
       <Card.Img variant="top" src={PetImage} />
       <Card.Body>
@@ -26,7 +30,13 @@ function PetCard() {
         >
           Edit Button
         </Button>
-
+        <Button
+          type='submit'
+          className="savebutton"
+          // onClick={editbutton}
+        >
+          Save Pet
+        </Button>
         <Button
           type='submit'
           className="deletebutton"
@@ -37,6 +47,7 @@ function PetCard() {
 
       </Card.Body>
     </Card>
+    </>
   );
 }
 
