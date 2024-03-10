@@ -5,7 +5,34 @@ import PetCard from '../components/PetCard';
 
 import { Link } from "react-router-dom";
 
-export default function Homepage() {
+import { useState, useEffect } from 'react';
+import { useMutation, useQuery } from '@apollo/client';
+
+// search book from Mongo DB 
+
+
+function Homepage() {
+
+    const [userFormData, setUserFormData] = useState({
+        pet_name: '',
+        pet_type: '',
+        pet_sex: '',
+        pet_notes: ''
+    });
+
+    const [showAlert, setShowAlert] = useState(false);
+
+
+    useEffect(() => {
+        if (error) {
+            setShowAlert(true);
+        } else {
+            setShowAlert(false);
+        }
+    }, [error]);
+
+
+
     return (
         <>
             <Link to="/profile">
@@ -17,3 +44,5 @@ export default function Homepage() {
         </>
     );
 }
+
+export default Homepage;
