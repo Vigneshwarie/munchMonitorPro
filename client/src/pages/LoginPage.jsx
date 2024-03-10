@@ -6,27 +6,20 @@ import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutation';
 import Auth from '../utils/auth';
 import Signinpic from '../assets/mmprosignin.png';
+import '../assets/styles/LoginSignUp.css';
 
 //  Field, Label, Control, Input
-const styles = {
-     signinbutton: {
-          background: "#dd7973",
-          color: "white",
-          border: "#dd7973",
-          font:"bold"
-     }
-};
 
 export default function LoginPage() {
      const [userFormData, setUserFormData] = useState({
           email: '',
           password: '',
      });
-    const [validated] = useState(false);
-    const [showAlert, setShowAlert] = useState(false);
-    const [login, { error }] = useMutation(LOGIN_USER);
+     const [validated] = useState(false);
+     const [showAlert, setShowAlert] = useState(false);
+     const [login, { error }] = useMutation(LOGIN_USER);
 
-    useEffect(() => {
+     useEffect(() => {
           if (error) {
                setShowAlert(true);
           } else {
@@ -66,6 +59,11 @@ export default function LoginPage() {
           });
      };
 
+     function signupbutton() {
+          window.location.assign('/signup');
+     }
+
+
 
      return (
           <>
@@ -80,12 +78,12 @@ export default function LoginPage() {
                     <Form.Group className='mb-3'>
                          <Form.Label htmlFor='email'>Email</Form.Label>
                          <Form.Control
-                         type='email'
-                         placeholder='Your email address'
-                         name='email'
-                         onChange={handleInputChange}
-                         value={userFormData.email}
-                         required
+                              type='email'
+                              placeholder='Your email address'
+                              name='email'
+                              onChange={handleInputChange}
+                              value={userFormData.email}
+                              required
                          />
                          <Form.Control.Feedback type='invalid'>Email is required!</Form.Control.Feedback>
                     </Form.Group>
@@ -93,12 +91,12 @@ export default function LoginPage() {
                     <Form.Group className='mb-3'>
                          <Form.Label htmlFor='password'>Password</Form.Label>
                          <Form.Control
-                         type='password'
-                         placeholder='Your password'
-                         name='password'
-                         onChange={handleInputChange}
-                         value={userFormData.password}
-                         required
+                              type='password'
+                              placeholder='Your password'
+                              name='password'
+                              onChange={handleInputChange}
+                              value={userFormData.password}
+                              required
                          />
                          <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
                     </Form.Group>
@@ -106,9 +104,17 @@ export default function LoginPage() {
                     <Button
                          disabled={!(userFormData.email && userFormData.password)}
                          type='submit'
-                         style={ styles.signinbutton} className="signinbutton"
-                         variant='danger'>
+                         className="signinbutton"
+                    >
                          Sign In
+                    </Button>
+
+                    <Button
+                         type='submit'
+                         className="signupbutton"
+                         onClick={signupbutton}
+                    >
+                         Sign Up
                     </Button>
 
                     <br />

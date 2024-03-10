@@ -1,0 +1,18 @@
+.btn.btn-primary.signupbutton{
+    background-color: #DF4900;
+    color:white;
+    font-weight: bold;
+    border-color: #FFF;
+    box-shadow: 0 0 10px white;    
+    margin: 5px;
+}
+
+.btn.btn-primary.signinbutton{
+    background-color: #DF4900;
+    color:white;
+    font-weight: bold;
+    border-color: #FFF;
+    box-shadow: 0 0 10px white;    
+    margin: 5px;
+}
+
