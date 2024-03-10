@@ -7,7 +7,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import SignLogin from './pages/SignLogin'
 import ViewCreate from './pages/ViewCreate.jsx';
 import Create from './pages/Create.jsx';
-import CreateProfile from './pages/CreateProfile.jsx'
+import Profile from './pages/Profile.jsx';
 import Error from './pages/Error.jsx'
 import Feeder from './pages/Feeder.jsx';
 import LoginPage from './pages/LoginPage.jsx';
@@ -46,8 +46,8 @@ const router = createBrowserRouter([
         element: <Create />,
       },
       {
-        path: '/CreateProfile',
-        element: <CreateProfile />,
+        path: '/profile',
+        element: <Profile />,
       },
       {
         path: '/LoginPage',
