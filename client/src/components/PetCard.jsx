@@ -33,30 +33,27 @@ function PetCard() {
 return (
   <>
     <Card className="PetProCard" style={{ width: '18rem' }}>
-      <Card.Img variant="top" src={PetImage} />
+      {/* <Card.Img variant="top" src={PetImage} /> */}
       <Card.Body>
-        <Card.Title>Card Title</Card.Title>
+        <Card.Title>This will be the Pet name</Card.Title>
+        <Card.Img variant="top" src={PetImage} />
+          {/* This will be Pet Image */}
         <Card.Text>
-          This will be pet type
+          This will be Pet sex symbol
         </Card.Text>
-        <Card.Text>
-          This will be Pet sex
-        </Card.Text>
-        <Card.Text>
-          This will be notes.
-        </Card.Text>
+
         <br />
         <Button
           type='submit'
           className="editbutton"
         // onClick={editbutton}
         >
-          Edit Button
+          Edit Pet
         </Button>
         <Button
           type='submit'
           className="savebutton"
-        // onClick={editbutton}
+        // onClick={savebutton}
         >
           Save Pet
         </Button>
@@ -65,7 +62,7 @@ return (
           className="deletebutton"
         // onClick={deletebutton}
         >
-          Delete Button
+          Delete Pet
         </Button>
 
       </Card.Body>
