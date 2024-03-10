@@ -83,47 +83,7 @@ export default function SignLogin() {
                 <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
                     Something went wrong with your signup!
                 </Alert>
-
-                <img src={Signinpic} />
-
-
-                <Form.Group className='mb-3'>
-                    <Form.Label htmlFor='email'>Email</Form.Label>
-                    <Form.Control
-                        type='email'
-                        placeholder='Your email address'
-                        name='email'
-                        onChange={handleInputChange}
-                        value={userFormData.email}
-                        required
-                    />
-                    <Form.Control.Feedback type='invalid'>Email is required!</Form.Control.Feedback>
-                </Form.Group>
-
-                <Form.Group className='mb-3'>
-                    <Form.Label htmlFor='password'>Password</Form.Label>
-                    <Form.Control
-                        type='password'
-                        placeholder='Your password'
-                        name='password'
-                        onChange={handleInputChange}
-                        value={userFormData.password}
-                        required
-                    />
-                    <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
-                </Form.Group>
-
-                <Button
-                    disabled={!(userFormData.email && userFormData.password)}
-                    type='submit'
-                    style={ styles.signinbutton} className="signinbutton"
-                    variant='danger'>
-                    Sign In
-                </Button>
-
                 <br />
-
-
                 <img src={Signuppic} />
 
                 <Form.Group className='mb-3'>
