@@ -72,6 +72,5 @@ return (
     </Card>
   </>
 );
-}
 
 export default PetCard;
