@@ -1,0 +1,22 @@
+.headerdiv{
+     width: 100%;
+     min-height: 20vh;
+}
+
+.logoutbuttondiv{
+     justify-content: flex-end;
+     float: right;
+
+}
+
+.headlogodiv{
+     justify-content:center;
+}
+
+.btn.btn-primary.logoutbutton{
+     background-color: #DF4900;
+     color:white;
+     font-weight: bold;
+}
+
+
