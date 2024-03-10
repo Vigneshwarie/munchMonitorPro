@@ -2,6 +2,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import PetImage from '../assets/petimage.png'
 
+
 function PetCard() {
   return (
     <Card className="PetProCard" style={{ width: '18rem' }}>
@@ -17,7 +18,23 @@ function PetCard() {
         <Card.Text>
           This will be notes.
         </Card.Text>
-        <Button variant="primary">Go somewhere</Button>
+        <br />
+        <Button
+          type='submit'
+          className="editbutton"
+          // onClick={editbutton}
+        >
+          Edit Button
+        </Button>
+
+        <Button
+          type='submit'
+          className="deletebutton"
+          // onClick={deletebutton}
+        >
+          Delete Button
+        </Button>
+
       </Card.Body>
     </Card>
   );
