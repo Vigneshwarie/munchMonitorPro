@@ -1,0 +1,18 @@
+.btn.btn-primary.cancelbutton{
+     background-color: #616161;
+     color:white;
+     font-weight: bold;
+     border-color: #FFF;
+     box-shadow: 0 0 10px white;     
+     margin: 10px;
+}
+
+.btn.btn-primary.savebutton{
+     background-color: #DF4900;
+     color:white;
+     font-weight: bold;
+     border-color: #FFF;
+     box-shadow: 0 0 10px white;        
+     margin:10px;
+}
+
