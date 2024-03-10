@@ -1,30 +1,25 @@
+import React from 'react';
 import headerlogo from '../assets/mm2headerlogo.png'
 import { Button } from 'react-bootstrap';
+import '../assets/styles/Header.css';
+import Auth from '../utils/auth';
 
-const styles = {
-    logoutbutton: {
-        background: "#81D8D0",
-        color: "white",
-        border: "#E7D045",
-        margin: "0, 0, 0, 0",
-
-
-    }
-};
 
 export default function Header() {
     return (
         <>
-            <Button
-                // disabled={!(userFormData.petname && userFormData.petsex && userFormData.pettype && userFormData.petnotes)}
-                type='submit'
-                style={styles.logoutbutton} className="logoutbutton"
-            >
-                Logout
-            </Button>
-
-            <  img src={headerlogo} className="headlogo" />
-
+            <div className='headerdiv'>
+                {
+                Auth.loggedIn() ? (
+                <div className="logoutbuttondiv">
+                    <Button type="button" className="logoutbutton" onClick={Auth.logout}>Logout</Button>
+                </div>
+                ) : null
+                }
+                <div className="headlogodiv">
+                    <img src={headerlogo} />
+                </div>
+            </div>
         </>
-    )
+    );
 }
