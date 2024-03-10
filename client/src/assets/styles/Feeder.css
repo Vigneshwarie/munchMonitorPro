@@ -1,0 +1,45 @@
+.namecontainer {
+ background-color: white;
+ padding: 20px;  
+ box-shadow: 0 0 5px white; 
+ margin: 10px;
+}
+
+.notecontainer {
+ background-color: #ebff9b;
+ padding: 50px;  
+ box-shadow: 0 0 5px #ebff9b; 
+ margin: 10px;
+}
+
+.medicine {
+ background-color: #93A243;
+ padding: 50px;  
+ box-shadow: 0 0 5px #93A243; 
+ margin: 10px;
+}
+
+
+.breakfast {
+ background-color: #654678;
+ padding: 50px;  
+ box-shadow: 0 0 5px #654678; 
+ margin: 10px;
+ color: white;
+}
+
+.lunch {
+ background-color: #654678;
+ padding: 50px;  
+ box-shadow: 0 0 5px #654678; 
+ margin: 10px;
+ color: white;
+}
+
+.dinner {
+ background-color: #654678;
+ padding: 50px;  
+ box-shadow: 0 0 5px #654678; 
+ margin: 10px;
+ color: white;
+}
