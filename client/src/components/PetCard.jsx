@@ -1,11 +1,16 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import PetImage from '../assets/petimage.png'
-import { useQuery } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { QUERY_PET } from '../utils/queries';
+import { DELETE_PET } from '../utils/mutations';
 
 function PetCard() {
   const { loading, data } = useQuery(QUERY_PET);
+  let userData = data?.me || {}
+    const userDataLength = Object.keys(userData).length;
+  }
+   const [deletePet, { error }] = useMutation(DELETE_PET)
 
   return (
     <>
