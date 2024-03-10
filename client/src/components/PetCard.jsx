@@ -1,6 +1,6 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import PetImage from  '../assets/petimage.png'
+import PetImage from '../assets/petimage.png'
 
 function PetCard() {
   return (
@@ -9,8 +9,13 @@ function PetCard() {
       <Card.Body>
         <Card.Title>Card Title</Card.Title>
         <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
+          This will be pet type
+        </Card.Text>
+        <Card.Text>
+          This will be Pet sex
+        </Card.Text>
+        <Card.Text>
+          This will be notes.
         </Card.Text>
         <Button variant="primary">Go somewhere</Button>
       </Card.Body>
