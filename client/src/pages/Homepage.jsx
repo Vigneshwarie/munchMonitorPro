@@ -2,6 +2,7 @@ import createPetPro from '../assets/createpetprobutton.png'
 import { Card, Media, Content, Heading } from 'react-bulma-components'
 import Mypets from '../assets/mypets.png';
 import PetCard from '../components/PetCard';
+import error from '../pages/Error'
 
 import { Link } from "react-router-dom";
 
