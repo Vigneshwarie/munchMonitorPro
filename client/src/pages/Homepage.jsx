@@ -5,13 +5,13 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import { useMutation, useQuery } from '@apollo/client';
 import { QUERY_USER } from '../utils/queries';
+import Auth from '../utils/auth';
+import { DELETE_PET } from '../utils/mutation';
 
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
+import { Button, Row, Col, Container, Card } from 'react-bootstrap';
 import '../assets/styles/Petcard.css'
 
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+
 
 import PetImage from '../assets/petimage.png';
 import feedbutt from '../assets/feedingbutt.png';
@@ -21,16 +21,33 @@ import maleSymbol from '../assets/malesymbol.png';
 import femaleSymbol from '../assets/femalesymbol.png';
 
 function PetCard(props) {
+     const [deletePet, { error }] = useMutation(DELETE_PET);
+
+     const handleDeletePet = async (petId) => {
+          console.log(123);
+          console.log("Pet_id==", petId)
+          const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+          if (!token) {
+               return false;
+          }
+
+          try {
+               const {data} = await deletePet({variables: {petId}});
+               console.log(data);
+          } catch (err) {
+               console.error(err);
+          }
+     };
+
      return (
           <>
-               
-               <Card className="PetProCard" style={{ width: '30rem', height: '25rem'}}>
+               <Card className="PetProCard" style={{ width: '35rem'}}>
                     <Card.Body>
                          <Card.Title className='pettitle'>{props.pet_name}</Card.Title>
                          <Row>
                               <Col>
                                    <a href="/mypets">
-                                        
                                         <img src={props.pet_type === 'Cat' ? PetImage : props.pet_type === 'Dog' ? feedbutt : props.pet_type === 'Bird' ? editbutt: deletebutt} className="cardimg" title={ "I'm a "+props.pet_type } />
                                    </a>
                               </Col>
@@ -52,10 +69,9 @@ function PetCard(props) {
                                    </Button>
                               </Col>
                               <Col>
-                                   <Button type='submit' className="deletebutton">
+                                   <Button type='submit' className="deletebutton" onClick={() => handleDeletePet(props.pet_id)}>
                                              <img src={deletebutt} title="Delete Me" className="imgbutton" />
                                    </Button>
-                                   {/* import your mutation to delete pet */}
                               </Col>
                          </Row>
                     </Card.Body>
@@ -67,6 +83,7 @@ function PetCard(props) {
 
 function Homepage() {
      const { loading, data } = useQuery(QUERY_USER);
+
      let petData = data?.user?.my_pets || {}
      console.log(petData);
 
@@ -85,8 +102,8 @@ function Homepage() {
             <div></div>
               <img src={Mypets} className="mypetspic" />
               <div>
-                    {petData.map((pet, idx) => {
-                         return <PetCard key={idx} pet_name={pet.pet_name} pet_sex={pet.pet_sex} pet_type={ pet.pet_type} />
+                   {petData.map((pet) => {
+                        return <PetCard key={pet._id} pet_name={pet.pet_name} pet_sex={pet.pet_sex} pet_type={pet.pet_type} pet_id={ pet._id} />
                     })}
               </div>
         </>
