@@ -16,6 +16,7 @@ import deletebutt from '../assets/deletebutt.png';
 // import { DELETE_PET } from '../utils/mutations';
 
 function PetCard() {
+
   //   const { loading, data } = useQuery(QUERY_PET);
   //   let userData = data?.me || {}
   //   const userDataLength = Object.keys(userData).length;
@@ -97,6 +98,7 @@ function PetCard() {
 
     </>
   );
+
 }
 export default PetCard;
 
