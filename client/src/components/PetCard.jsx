@@ -56,7 +56,7 @@ function PetCard() {
             <Col>
               <img src={genimage} className="cardimg" />
               <strong>Gender</strong>
-             
+
             </Col>
           </Row>
           <br />
@@ -72,7 +72,7 @@ function PetCard() {
                 <img src={editbutt} title="Edit Me" className="imgbutton" />
               </Button>
             </Col>
-            
+
             <Col>
               <Button
                 type='submit'
