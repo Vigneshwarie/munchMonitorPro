@@ -39,15 +39,15 @@ const typeDefs = `
   
      type Query {
           user: User
-          pet(pet_id: ID!): User
+          pet(_id: ID!): User
      }
 
      type Mutation {
           login(email: String!, password: String!): Auth
           addUser(first_name: String!, last_name: String!, email: String!, password: String!): Auth
-          addPet(pet_id: ID!, pet_name: String!, pet_type: String, pet_sex: String, pet_notes: String): User
-          editPet(pet_id: ID!, pet_notes: String): User
-          deletePet(pet_id: ID!): User
+          addPet(pet_name: String!, pet_type: String, pet_sex: String, pet_notes: String): User
+          editPet(id: ID!, pet_notes: String): User
+          deletePet(id: ID!): User
           createFeeder(feed_date: String!, pet_id: ID, breakfast_food_type: String, medicine_morning: String, lunch_food_type: String, medicine_afternoon: String, dinner_food_type: String, medicine_evening: String): Feeder
           editFeeder(id: ID!, breakfast_food_type: String, medicine_morning: String, lunch_food_type: String, medicine_afternoon: String, dinner_food_type: String, medicine_evening: String): Feeder
      }
