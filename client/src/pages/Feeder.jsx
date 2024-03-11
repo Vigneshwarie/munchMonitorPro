@@ -21,7 +21,7 @@ export default function Feeder() {
   return (
     <>
 
-    {/* names/greeting */}
+      {/* names/greeting */}
       <Container className="namecontainer" >
         <Row>
           <Col> <img src={username} /> **name here**</Col>
@@ -51,27 +51,28 @@ export default function Feeder() {
       <Container className="breakfast" >
         <Row>
           <Col><img src={breakfast} />
-          <br />
-            Dry Food
-            <Form.Check type="radio" aria-label="radio 1" />
+            <br />
+              Dry Food
+              <Form.Check type="radio" aria-label="radio 1" />
 
-            Wet Food
-            <Form.Check type="radio" aria-label="radio 2" />
+              Wet Food
+              <Form.Check type="radio" aria-label="radio 2" />
 
-            Both
-            <Form.Check type="radio" aria-label="radio 3" />
+              Both
+              <Form.Check type="radio" aria-label="radio 3" />
+            
 
             <br />
 
             <img src={medicine} />
             <Form.Check aria-label="option 1" className="medicine" />
           </Col>
-      <Button
-        // disabled={!(userFormData.first_name && userFormData.last_name && userFormData.email && userFormData.password)}
-        type='submit'
-        variant='danger'>
-        Confirm Feeding
-      </Button>
+          <Button
+            // disabled={!(userFormData.first_name && userFormData.last_name && userFormData.email && userFormData.password)}
+            type='submit'
+            variant='danger'>
+            Confirm Feeding
+          </Button>
         </Row>
       </Container>
 
@@ -81,7 +82,7 @@ export default function Feeder() {
       <Container className="lunch" >
         <Row>
           <Col><img src={lunch} />
-          <br />
+            <br />
             Dry Food
             <Form.Check type="radio" aria-label="radio 1" />
 
@@ -96,12 +97,12 @@ export default function Feeder() {
             <img src={medicine} />
             <Form.Check aria-label="option 1" className="medicine" />
           </Col>
-      <Button
-        // disabled={!(userFormData.first_name && userFormData.last_name && userFormData.email && userFormData.password)}
-        type='submit'
-        variant='danger'>
-        Confirm Feeding
-      </Button>
+          <Button
+            // disabled={!(userFormData.first_name && userFormData.last_name && userFormData.email && userFormData.password)}
+            type='submit'
+            variant='danger'>
+            Confirm Feeding
+          </Button>
         </Row>
       </Container>
 
@@ -110,7 +111,7 @@ export default function Feeder() {
       <Container className="dinner" >
         <Row>
           <Col><img src={dinner} />
-          <br />
+            <br />
             Dry Food
             <Form.Check type="radio" aria-label="radio 1" />
 
@@ -125,17 +126,17 @@ export default function Feeder() {
             <img src={medicine} />
             <Form.Check aria-label="option 1" className="medicine" />
           </Col>
-      <Button
-        // disabled={!(userFormData.first_name && userFormData.last_name && userFormData.email && userFormData.password)}
-        type='submit'
-        variant='danger'>
-        Confirm Feeding
-      </Button>
+          <Button
+            // disabled={!(userFormData.first_name && userFormData.last_name && userFormData.email && userFormData.password)}
+            type='submit'
+            variant='danger'>
+            Confirm Feeding
+          </Button>
         </Row>
       </Container>
 
       <Button type='button' className="cancelbutton" >Cancel</Button>
-<br />
+      <br />
     </>
   )
 }

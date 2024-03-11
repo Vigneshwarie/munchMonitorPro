@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import '../assets/styles/Profile.css';
 import { useMutation } from '@apollo/client';
 import { ADD_PET } from '../utils/mutation';
+import { Link } from 'react-router-dom'
 
 export default function Profile() {
      const [userFormData, setUserFormData] = useState({

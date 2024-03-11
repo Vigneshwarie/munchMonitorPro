@@ -37,8 +37,8 @@
 }
 
 .card {
-  padding: 2em;
   margin: 25px;
+  min-width: 500px
 
 }
 
