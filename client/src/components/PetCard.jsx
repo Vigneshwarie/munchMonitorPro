@@ -12,95 +12,59 @@ import editbutt from '../assets/editbutt.png';
 import deletebutt from '../assets/deletebutt.png';
 import genimage from '../assets/malesymbol.png';
 
-// import { useMutation, useQuery } from '@apollo/client';
-// import { QUERY_PET } from '../utils/queries';
-// import { DELETE_PET } from '../utils/mutations';
+import { useMutation, useQuery } from '@apollo/client';
+import { QUERY_USER } from '../utils/queries';
+//import { DELETE_PET } from '../utils/mutations';
 
 function PetCard() {
 
-  //   const { loading, data } = useQuery(QUERY_PET);
-  //   let userData = data?.me || {}
-  //   const userDataLength = Object.keys(userData).length;
-  // }
-  // const [deletePet, { error }] = useMutation(DELETE_PET)
-
-  // const handleDeletePet = async (_id) => {
-  //   const token = Auth.loggedIn() ? Auth.getToken() : null;
-  //   if (!token) {
-  //     return false;
-  //   }
-  //   try {
-  //     const { data } = await deletePet({
-  //       variables: { _id }
-  //     });
-
-  //     // here we need to update current data.
-  //   } catch (error) {
-  //     console.log(error);
-
-  //   }
-  // }
+     const { loading, data } = useQuery(QUERY_USER);
+     let userData = data?.user || {}
+     // This returns data; however it also return empty objects.
+     console.log(userData);
 
 
-  return (
-    <>
-      <Card className="PetProCard" style={{ width: '35rem' }}>
-        <Card.Body>
-          <Card.Title>Pet Name</Card.Title>
-          <Row>
-            <Col>
-
-              <img src={PetImage} className="cardimg" />
-              <strong>My Pet</strong>
-            </Col>
-            <Col>
-              <img src={genimage} className="cardimg" />
-              <strong>Gender</strong>
-
-            </Col>
-          </Row>
-          <br />
-
-          <Row>
-
-            <Col>
-              <Button
-                type='submit'
-                className="editbutton"
-              // onClick={editbutton}
-              >
-                <img src={editbutt} title="Edit Me" className="imgbutton" />
-              </Button>
-            </Col>
-
-            <Col>
-              <Button
-                type='submit'
-                className="feedbutton"
-              // onClick={editbutton}
-              >
-                <img src={feedbutt} title="Feeding Schedule" className="imgbutton" />
-              </Button>
-            </Col>
-
-
-            <Col>
-              <Button
-                type='submit'
-                className="deletebutton"
-              // onClick={deletebutton}
-              >
-                <img src={deletebutt} title="Delete Me" className="imgbutton" />
-              </Button>
-            </Col>
-          </Row>
-
-        </Card.Body>
-      </Card >
-
-    </>
-  );
-
+  
+     return (
+          <>
+           
+               
+               <Card className="PetProCard" style={{ width: '35rem' }}>
+                    <Card.Body>
+                         <Card.Title>Some Title</Card.Title>
+                         <Row>
+                              <Col>
+                                   <img src={PetImage} className="cardimg" />
+                                   <strong>My Pet</strong>
+                              </Col>
+                              <Col>
+                                   <img src={genimage} className="cardimg" />
+                                   <strong>Gender</strong>
+                              </Col>
+                         </Row>
+                         <br />
+                         <Row>
+                              <Col>
+                                   <Button type='submit' className="editbutton" >
+                                        <img src={editbutt} title="Edit Me" className="imgbutton" />
+                                   </Button>
+                              </Col>
+                              <Col>
+                                   <Button type='submit' className="feedbutton">
+                                        <img src={feedbutt} title="Feeding Schedule" className="imgbutton" />
+                                   </Button>
+                              </Col>
+                              <Col>
+                                   <Button type='submit' className="deletebutton">
+                                        <img src={deletebutt} title="Delete Me" className="imgbutton" />
+                                   </Button>
+                              </Col>
+                         </Row>
+                    </Card.Body>
+               </Card >
+         
+     </>
+     );
 }
 export default PetCard;
 
