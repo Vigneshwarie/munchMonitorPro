@@ -34,8 +34,10 @@ function PetCard() {
                          <Card.Title>Some Title</Card.Title>
                          <Row>
                               <Col>
-                                   <img src={PetImage} className="cardimg" />
-                                   <strong>My Pet</strong>
+                                   <a href="/mypets">
+                                        <img src={PetImage} className="cardimg" />
+                                        <strong>My Pet</strong>
+                                   </a>
                               </Col>
                               <Col>
                                    <img src={genimage} className="cardimg" />
