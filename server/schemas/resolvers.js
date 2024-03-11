@@ -79,12 +79,12 @@ const resolvers = {
                     console.log('Error in mutation while editing pet details: ', err);
                }
           },
-          deletePet: async (parent, { pet_id }, context) => {
+          deletePet: async (parent, { _id }, context) => {
                try {
                     if (context.user) {
                          const updatedUser = await User.findOneAndUpdate(
                               { _id: context.user._id },
-                              { $pull: { my_pets: { pet_id  } } },
+                              { $pull: { my_pets: { _id  } } },
                               { new: true }
                          );
                          return updatedUser;
