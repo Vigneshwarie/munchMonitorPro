@@ -35,7 +35,13 @@ function PetTemplate(props) {
                       </Row>
                       <br />
                       <Row>
-
+                      <Col>
+                                <Button type='submit' className="editbutton" >
+                                  {/*  We can add a link like this to edit the pet information =>  <a href={`/edit/${props.pet_id}`}></a> */}
+                                     <img src={editbutt} title="Edit Me" className="imgbutton" />
+                                </Button>
+                              
+                           </Col>
                            <Col>
                                 <Button type='submit' className="feedbutton">
                                      <img src={feedbutt} title="Feeding Schedule" className="imgbutton" />
