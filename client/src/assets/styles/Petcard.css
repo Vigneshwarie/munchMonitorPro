@@ -4,19 +4,29 @@
     font-weight: bold;
     border-color: #FFF;
     box-shadow: 0 0 10px white;    
-    min-width: 100px;
-    min-height: 100px;
+    min-width: 75px;
+    min-height: 75px;
 }
 
 .imgbutton {
-    max-width: 120px;
-    max-height: 120px;
-    margin: 5px;
+    max-width: 100px;
+    max-height: 100px;
+    margin: 2px;
     flex-direction: row;
-
 }
 
-/* .cardimg {
+.imgbutton:hover {
+    background-color: #DF4900;
+}
+
+.cardimg {
     max-width: 150px;
     max-height: 150px;
-} */
+} 
+
+
+.pettitle{
+    font-weight: Bold;
+    font-weight: 15px;
+    color: #DF4900;
+}
