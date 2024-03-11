@@ -12,6 +12,7 @@ import Error from './pages/Error.jsx'
 import Feeder from './pages/Feeder.jsx';
 import LoginPage from './pages/LoginPage.jsx';
 import Homepage from './pages/Homepage.jsx';
+import MyPets from './pages/MyPets.jsx';
 
 
 
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
         path: '/LoginPage',
         element: <LoginPage />,
       },
+      {
+        path: '/myPets',
+        element: <MyPets />,
+      }
     ],
   },
 ]);
