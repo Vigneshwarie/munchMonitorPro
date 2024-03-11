@@ -34,13 +34,8 @@ const resolvers = {
                     if (!correctPw) {
                          throw AuthenticationError;
                     }
-
-                //    console.log(user);
-                //    console.log(user.first_name);
-                //    console.log(user.last_name);
-
                     const token = signToken(user);
-                //    console.log(token);
+                    //    console.log(token);
                     // While testing Loginform this returns the user details and token.
                     return { token, user };
                     
@@ -84,12 +79,12 @@ const resolvers = {
                     console.log('Error in mutation while editing pet details: ', err);
                }
           },
-          deletePet: async (parent, { _id }, context) => {
+          deletePet: async (parent, { pet_id }, context) => {
                try {
                     if (context.user) {
                          const updatedUser = await User.findOneAndUpdate(
                               { _id: context.user._id },
-                              { $pull: { my_pets: { _id  } } },
+                              { $pull: { my_pets: { pet_id  } } },
                               { new: true }
                          );
                          return updatedUser;

@@ -5,6 +5,10 @@ const { Schema } = mongoose;
 
 const petSchema = new Schema(
      {
+          pet_id: {
+               type: String,
+               required: true,
+          },
           pet_name: {
                type: String,
                required: true,
