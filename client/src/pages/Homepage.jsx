@@ -33,7 +33,7 @@ function PetCard(props) {
           }
 
           try {
-               const {data} = await deletePet({variables: {petId}});
+               const {data} = await deletePet({variables: {_id: petId}});
                console.log(data);
           } catch (err) {
                console.error(err);
