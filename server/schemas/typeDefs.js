@@ -1,5 +1,6 @@
 // Updated the Date to String for Feed date data and modified the Pet to the ID.
 // Add Pet, edit pet and delete pet should return a user as it is a schema to the user.
+// Pet is not a model it returns User
 const typeDefs = `
      type User {
           _id: ID!
@@ -36,7 +37,7 @@ const typeDefs = `
   
      type Query {
           user: User
-          pet(_id: ID!): Pet
+          pet(_id: ID!): User
      }
 
      type Mutation {
