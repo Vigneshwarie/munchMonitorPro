@@ -1,0 +1,17 @@
+.editbutton, .feedbutton, .deletebutton {
+    background-color: white;
+    color:white;
+    font-weight: bold;
+    border-color: #FFF;
+    box-shadow: 0 0 10px white;    
+    min-width: 100px;
+    min-height: 100px;
+}
+
+.imgbutton {
+    max-width: 120px;
+    max-height: 120px;
+    margin: 5px;
+    flex-direction: row;
+
+}
