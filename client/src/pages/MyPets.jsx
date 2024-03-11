@@ -15,19 +15,19 @@ import femaleSymbol from '../assets/femalesymbol.png';
 import { useMutation, useQuery } from '@apollo/client';
 import { QUERY_USER } from '../utils/queries';
 
-function PetTemplate(props) {
-  return (
-       <>
-            <Card className="PetProCard" style={{ width: '35rem' }}>
-                 <Card.Body>
-                      <Card.Title>{props.pet_name}</Card.Title>
-                      <Row>
-                           <Col>
-                                <a href="/mypets">
-                                     <img src={PetImage} className="cardimg" />
-                                     <strong>My Pet</strong>
-                                </a>
-                           </Col>
+function PetCard(props) {
+     return (
+          <>
+               <Card className="PetProCard" style={{ width: '35rem' }}>
+                    <Card.Body>
+                         <Card.Title>{props.pet_name}</Card.Title>
+                         <Row>
+                              <Col>
+                                   <a href="/mypets">
+                                        <img src={PetImage} className="cardimg" />
+                                        <strong>My Pet</strong>
+                                   </a>
+                              </Col>
                            <Col>
                                 <img src={props.pet_sex === 'Male' ? maleSymbol : femaleSymbol} className="cardimg" />
                                 <strong>Gender</strong>
@@ -62,23 +62,22 @@ function PetTemplate(props) {
 }
 
 export default function MyPets() {
-  const { loading, data } = useQuery(QUERY_USER);
+     const { loading, data } = useQuery(QUERY_USER);
      let petData = data?.user?.my_pets || {}
-     // This returns data; however it also return empty objects.
      console.log(petData);
 
      if(loading) {
-      return (
-        <h2>Loading Pet Data..</h2>
-      )
+          return (
+               <h2>Loading Pet Data..</h2>
+          );
      }
-    return (
-        <>
-            <h2>Viewing Pets</h2>
-            {petData.map((pet, idx) => {
-              return <PetTemplate key={idx} pet_name={pet.pet_name} pet_sex={pet.pet_sex}/>
-            })}
+     return (
+          <>
+               <h2>Viewing Pets</h2>
+               {petData.map((pet, idx) => {
+                    return <PetCard key={idx} pet_name={pet.pet_name} pet_sex={pet.pet_sex} pet_type={ pet.pet_type} />
+               })}
 
-        </>
-    )
+          </>
+     )
 }
