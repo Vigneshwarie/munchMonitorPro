@@ -10,6 +10,7 @@ import PetImage from '../assets/petimage.png';
 import feedbutt from '../assets/feedingbutt.png';
 import editbutt from '../assets/editbutt.png';
 import deletebutt from '../assets/deletebutt.png';
+import genimage from '../assets/malesymbol.png';
 
 // import { useMutation, useQuery } from '@apollo/client';
 // import { QUERY_PET } from '../utils/queries';
@@ -43,34 +44,24 @@ function PetCard() {
 
   return (
     <>
-      <Card className="PetProCard" style={{ width: '18rem' }}>
+      <Card className="PetProCard" style={{ width: '35rem' }}>
         <Card.Body>
-          <Card.Title>Pet Name </Card.Title>
+          <Card.Title>Pet Name</Card.Title>
           <Row>
-            <Card.Img variant="top" src={PetImage} />
-            <Card.Text>
-              This will be pet type
-            </Card.Text>
+            <Col>
+
+              <img src={PetImage} className="cardimg" />
+              <strong>My Pet</strong>
+            </Col>
+            <Col>
+              <img src={genimage} className="cardimg" />
+              <strong>Gender</strong>
+             
+            </Col>
           </Row>
-          <Card.Text>
-            This will be Pet sex
-          </Card.Text>
-          <Card.Text>
-            This will be notes.
-          </Card.Text>
           <br />
 
           <Row>
-
-            <Col>
-            <Button
-                type='submit'
-                className="feedbutton"
-              // onClick={editbutton}
-              >
-                <img src={feedbutt} title="Feeding Schedule" className="imgbutton"/>
-              </Button>
-            </Col>
 
             <Col>
               <Button
@@ -78,9 +69,20 @@ function PetCard() {
                 className="editbutton"
               // onClick={editbutton}
               >
-                <img src={editbutt} title="Edit Me" className="imgbutton"/>
+                <img src={editbutt} title="Edit Me" className="imgbutton" />
               </Button>
             </Col>
+            
+            <Col>
+              <Button
+                type='submit'
+                className="feedbutton"
+              // onClick={editbutton}
+              >
+                <img src={feedbutt} title="Feeding Schedule" className="imgbutton" />
+              </Button>
+            </Col>
+
 
             <Col>
               <Button
