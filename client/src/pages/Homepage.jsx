@@ -11,8 +11,6 @@ import { DELETE_PET, EDIT_PET } from '../utils/mutation';
 import { Button, Row, Col, Container, Card } from 'react-bootstrap';
 import '../assets/styles/Petcard.css'
 
-
-
 import PetImage from '../assets/petimage.png';
 import feedbutt from '../assets/feedingbutt.png';
 import editbutt from '../assets/editbutt.png';
@@ -43,6 +41,7 @@ function PetCard(props) {
           try {
                const {data} = await deletePet({variables: {_id: petId}});
                console.log(data);
+               window.location.assign('/homepage');
           } catch (err) {
                console.error(err);
           }

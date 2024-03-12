@@ -91,12 +91,13 @@ const resolvers = {
           deletePet: async (parent, { _id }, context) => {
                try {
                     if (context.user) {
+                         const petData = await Pet.findByIdAndDelete({_id});
                          const updatedUser = await User.findOneAndUpdate(
                               { _id: context.user._id },
-                              { $pull: { my_pets: { _id  } } },
+                              { $pull: { my_pets: _id  } },
                               { new: true }
                          );
-                         return updatedUser;
+                         return petData;
                     }
                } catch (err) {
                     console.log('Error in mutation while deleting pet: ', err);
