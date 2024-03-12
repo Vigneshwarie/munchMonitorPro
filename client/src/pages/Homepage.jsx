@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import { useMutation, useQuery } from '@apollo/client';
 import { QUERY_USER } from '../utils/queries';
 import Auth from '../utils/auth';
-import { DELETE_PET } from '../utils/mutation';
+import { DELETE_PET, EDIT_PET } from '../utils/mutation';
 
 import { Button, Row, Col, Container, Card } from 'react-bootstrap';
 import '../assets/styles/Petcard.css'
@@ -22,6 +22,14 @@ import femaleSymbol from '../assets/femalesymbol.png';
 
 function PetCard(props) {
      const [deletePet, { error }] = useMutation(DELETE_PET);
+
+     const handleEditPet = async (petId) => {
+          window.location.assign('/editPet/{petId}');
+     };
+
+      const handleFeedPet = async (petId) => {
+          
+     };
 
      const handleDeletePet = async (petId) => {
           console.log(123);
@@ -58,15 +66,14 @@ function PetCard(props) {
                          <br />
                          <Row>
                               <Col>
-                                        <Button type='submit' className="editbutton" >
-                                        {/*  We can add a link like this to edit the pet information =>  <a href={`/edit/${props.pet_id}`}></a> */}
-                                             <img src={editbutt} title="Edit Me" className="imgbutton" />
-                                        </Button>
-                              </Col>
-                              <Col>
-                                   <Button type='submit' className="feedbutton">
+                                   <Button type='submit' className="feedbutton" onClick={() => handleFeedPet(props.pet_id)}>
                                              <img src={feedbutt} title="Feeding Schedule" className="imgbutton" />
                                    </Button>
+                              </Col>
+                              <Col>
+                                   <Link to={`/editPet/${props.pet_id}`} className="editbutton">
+                                        <img src={editbutt} title="Edit Me" className="imgbutton" />
+                                   </Link>
                               </Col>
                               <Col>
                                    <Button type='submit' className="deletebutton" onClick={() => handleDeletePet(props.pet_id)}>
@@ -76,6 +83,7 @@ function PetCard(props) {
                          </Row>
                     </Card.Body>
                </Card >
+               <br/>
           </>
      );
 }
@@ -84,8 +92,8 @@ function PetCard(props) {
 function Homepage() {
      const { loading, data } = useQuery(QUERY_USER);
 
-     let petData = data?.user?.my_pets || {}
-     console.log(petData);
+     const petData = data?.user?.my_pets || [];
+     console.log(96, data);
 
      if(loading) {
           return (
