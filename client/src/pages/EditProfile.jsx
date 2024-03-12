@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import { Button, Form, Alert } from 'react-bootstrap';
 import '../assets/styles/Profile.css';
-import { useMutation } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { EDIT_PET } from '../utils/mutation';
 import { useParams } from 'react-router-dom';
+import { QUERY_PET } from '../utils/queries';
 
-export default function Profile() {
-     const [userFormData, setUserFormData] = useState({
+function EditPetProfile(props) {
+      const [userFormData, setUserFormData] = useState({
           pet_notes: ''
      });
 
@@ -33,12 +34,6 @@ export default function Profile() {
      const handleFormSubmit = async (event) => { 
           event.preventDefault(); 
           const form = event.currentTarget;
-
-          if (form.checkValidity() === false) {
-               event.preventDefault();
-               event.stopPropagation();
-          }
-
           try {
                console.log(6666);
                
@@ -69,10 +64,9 @@ export default function Profile() {
 
                          <Form.Group className='mb-3'> 
                               <Form.Control name='pet_notes' as="textarea" rows="5"
-                              placeholder="Pet's Notes" onChange={handleInputChange}>
+                                   placeholder="Pet's Notes" onChange={handleInputChange} defaultValue={props.pet_notes}>
                               </Form.Control> 
                          </Form.Group> 
-
                          <br />
                          <Button type='submit' className="savebutton"> Save Pet </Button>
                          <Button type='button' className="cancelbutton" onClick={onCancelbtn}>Cancel</Button>
@@ -81,4 +75,28 @@ export default function Profile() {
                </div>
           </>
      );
+}
+
+export default function Profile() {
+     const { id } = useParams();
+     const { loading, data } = useQuery(QUERY_PET, {
+          variables: {_id: id},
+     });
+
+     const petData = data?.pet || [];
+     console.log(96, data);
+     console.log(99, petData._id);
+
+     if(loading) {
+          return (
+               <h2>Loading Pet Data..</h2>
+          );
+     }
+    return (
+        <>
+              <div>
+                    <EditPetProfile key={petData._id} pet_name={petData.pet_name} pet_sex={petData.pet_sex} pet_type={petData.pet_type} pet_id={petData._id} pet_notes={petData.pet_notes} />
+              </div>
+        </>
+    );
 }
