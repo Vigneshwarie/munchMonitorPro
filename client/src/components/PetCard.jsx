@@ -29,7 +29,7 @@ function PetCard() {
           <>
            
                
-               <Card className="PetProCard" style={{ width: '35rem' }}>
+               <Card className="PetProCard" >
                     <Card.Body>
                          <Card.Title>Some Title</Card.Title>
                          <Row>
