@@ -15,8 +15,11 @@ const resolvers = {
           },
           pet: async (parent, args, context) => {
                try {
-                    if (context.pet) {
-                         return Pet.findOne(context.pet._id);
+                    const pet = { ...args };
+                    console.log(888, pet);
+                    if (context.user) {
+                         console.log(999);
+                         return Pet.findById(pet._id);
                     }
                } catch (err) {
                     console.log('Error in query while retrieving pet details: ', err);
