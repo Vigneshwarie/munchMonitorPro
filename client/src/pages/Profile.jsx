@@ -45,6 +45,9 @@ export default function Profile() {
                     variables: { ...userFormData },
                });
                console.log(data);
+               if (data) {
+                    window.location.assign('/homepage');
+               }
           } catch (err) {
                console.log(err);
           }
@@ -104,8 +107,8 @@ export default function Profile() {
                          </Form.Group> 
 
                          <Form.Group className='mb-3'> 
-                              <Form.Control name='pet_notes' as='textarea' rows="5"
-                              placeholder="Pet's Notes">
+                              <Form.Control name='pet_notes' as="textarea" rows="5"
+                              placeholder="Pet's Notes" onChange={handleInputChange}>
                               </Form.Control> 
                          </Form.Group> 
 

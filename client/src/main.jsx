@@ -13,6 +13,7 @@ import Feeder from './pages/Feeder.jsx';
 import LoginPage from './pages/LoginPage.jsx';
 import Homepage from './pages/Homepage.jsx';
 import MyPets from './pages/MyPets.jsx';
+import EditProfile from './pages/EditProfile.jsx';
 
 
 
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
       {
         path: '/myPets',
         element: <MyPets />,
+      },
+      {
+        path: '/editPet/:id',
+        element: <EditProfile />,
       }
     ],
   },

@@ -29,16 +29,10 @@ export const ADD_PET = gql`
      mutation addPet($pet_name: String!, $pet_type: String, $pet_sex: String, $pet_notes: String) {
           addPet(pet_name: $pet_name, pet_type: $pet_type, pet_sex: $pet_sex, pet_notes: $pet_notes) {
                _id
-               first_name
-               last_name
-               email
-               my_pets {
-                    _id
-                    pet_name
-                    pet_type
-                    pet_sex
-                    pet_notes
-               }
+               pet_name
+               pet_type
+               pet_sex
+               pet_notes
           }
      }
 `;
@@ -47,16 +41,10 @@ export const EDIT_PET = gql`
      mutation editPet($_id:ID!, $pet_notes: String) {
           editPet(_id:$_id, pet_notes: $pet_notes) {
                _id
-               first_name
-               last_name
-               email
-               my_pets {
-                    _id
-                    pet_name
-                    pet_type
-                    pet_sex
-                    pet_notes
-               }
+               pet_name
+               pet_type
+               pet_sex
+               pet_notes
           }
      }
 `;
@@ -65,19 +53,14 @@ export const EDIT_PET = gql`
 export const DELETE_PET = gql`
      mutation deletePet($_id:ID!) {
           deletePet(_id:$_id) {
-              _id
-               first_name
-               last_name
-               email
-               my_pets {
-                    _id
-                    pet_name
-                    pet_type
-                    pet_sex
-                    pet_notes
-               }
+               _id
+               pet_name
+               pet_type
+               pet_sex
+               pet_notes
           }
      }
+     
 `;
 
 export const CREATE_FEEDER = gql`

@@ -5,8 +5,9 @@ const resolvers = {
      Query: {
           user: async (parent, args, context) => {
                try {
+                    console.log(8, context?.user);
                     if (context.user) {
-                         return User.findById(context.user._id);
+                         return await User.findById(context.user._id).populate('my_pets');
                     }
                } catch (err) {
                     console.log('Error in query while retrieving user details: ', err);
@@ -55,23 +56,31 @@ const resolvers = {
           },
           addPet: async (parent, args, context) => {
                try {
+                    console.log(58, { ...args });
                     if (context.user) {
+                         const pet = { ...args };
+                         const petData = await Pet.create(pet);
+                         console.log(66666);
+                         console.log(petData);
                          const updatedUser = await User.findOneAndUpdate(
                               { _id: context.user._id },
-                              { $push: { my_pets: args } },
+                              { $addToSet: { my_pets: petData._id } },
                               { new: true }
                          );
-                         return updatedUser;
+                         return petData;
                     }
                } catch (err) {
                     console.log('Error in mutation while adding pet for a user: ', err);
                }        
           },
-          editPet: async (parent, args) => {
+          editPet: async (parent, {pet_notes, _id}) => {
                try {
+                    console.log(555);
+                    console.log(pet_notes, _id);
+
                     const updatedPet = await Pet.findOneAndUpdate(
-                         { _id: args._id },
-                         { $set: { pet_notes: args } },
+                         { _id: _id },
+                         { $set: { pet_notes: pet_notes } },
                          { new: true }
                     );
                     return updatedPet;
