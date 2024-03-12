@@ -40,12 +40,8 @@ const router = createBrowserRouter([
         element: <ViewCreate />,
       },
       {
-        path: '/Feeder',
+        path: '/feedMe/:id',
         element: <Feeder />,
-      },
-      {
-        path: '/Create',
-        element: <Create />,
       },
       {
         path: '/profile',
