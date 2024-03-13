@@ -14,67 +14,74 @@ import medicine from "../assets/meds.png"
 import notes from "../assets/notes.png"
 import petname from "../assets/petname.png"
 import username from "../assets/username.png"
+import { useMutation, useQuery } from '@apollo/client';
+import { useParams } from 'react-router-dom';
+import { QUERY_PET } from '../utils/queries';
 
 
 
 export default function Feeder() {
+     const { id } = useParams();
+     const { loading, data } = useQuery(QUERY_PET, {
+          variables: {_id: id},
+     });
+
+     const petData = data?.pet || [];
+
+     if(loading) {
+          return (
+               <h2>Loading Pet Data..</h2>
+          );
+     }
+
   return (
-    <>
+     <>
+          <Container className="namecontainer" >
+               <Row>
+                    <Col> <img src={username} /> **name here**</Col>
+               </Row>
+          </Container>
+          <Container className="namecontainer" >
+               <Row>
+                    <Col> <img src={petname} /> {petData.pet_name}</Col>
+               </Row>
+          </Container>
 
-      {/* names/greeting */}
-      <Container className="namecontainer" >
-        <Row>
-          <Col> <img src={username} /> **name here**</Col>
-        </Row>
-      </Container>
+          <Container className="notecontainer" >
+               <Row>
+                    <Col> <img src={notes} /> <br />{petData.pet_notes}</Col>
+               </Row>
+          </Container>
 
-      <Container className="namecontainer" >
-        <Row>
-          <Col> <img src={petname} /> **pet name here**</Col>
-        </Row>
-      </Container>
-
-      <Container className="notecontainer" >
-        <Row>
-          <Col> <img src={notes} /> <br />**Pet notes here**</Col>
-        </Row>
-      </Container>
-
-
-      {/* Feeding Schedule */}
-      <br />
-      <img src={feedingschedule} />
-      <br />
+          {/* Feeding Schedule */}
+          <br />
+          <img src={feedingschedule} />
+          <br />
 
 
       {/* Breakfast section */}
-      <Container className="breakfast" >
-        <Row>
-          <Col><img src={breakfast} />
-            <br />
-              Dry Food
-              <Form.Check type="radio" aria-label="radio 1" />
+          <Container className="breakfast" >
+               <Row>
+                      <Col><img src={breakfast} />
+             
+                    <Form.Check type="radio" aria-label="radio 1" name="breakfasttype" label="Dry Food" value="Dry Food"/> 
+                    
+                    <Form.Check type="radio" aria-label="radio 2" name="breakfasttype" value="Wet Food"/>Wet Food
+                   
+                    <Form.Check type="radio" aria-label="radio 3" name="breakfasttype" value="Both"/> Both
 
-              Wet Food
-              <Form.Check type="radio" aria-label="radio 2" />
 
-              Both
-              <Form.Check type="radio" aria-label="radio 3" />
-            
-
-            <br />
-
-            <img src={medicine} />
-            <Form.Check aria-label="option 1" className="medicine" />
-          </Col>
-          <Button
-            // disabled={!(userFormData.first_name && userFormData.last_name && userFormData.email && userFormData.password)}
-            type='submit'
-            variant='danger'>
-            Confirm Feeding
-          </Button>
-        </Row>
-      </Container>
+                    <img src={medicine} />
+                    <Form.Check aria-label="option 1" className="medicine" />
+               </Col>
+               <Button
+               // disabled={!(userFormData.first_name && userFormData.last_name && userFormData.email && userFormData.password)}
+               type='submit'
+               variant='danger'>
+               Confirm Feeding
+               </Button>
+               </Row>
+          </Container>
 
 
 
