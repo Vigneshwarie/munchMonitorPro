@@ -61,6 +61,14 @@ function NavTabs() {
          LoginPage
         </Link>
       </div>
+      <div className="nav-item">
+        <Link
+          to="Devs"
+          className={currentPage === '/Devs' ? 'nav-link active' : 'nav-link'}
+        >
+         LoginPage
+        </Link>
+      </div>
     </div>
   );
 }

@@ -14,6 +14,7 @@ import LoginPage from './pages/LoginPage.jsx';
 import Homepage from './pages/Homepage.jsx';
 import MyPets from './pages/MyPets.jsx';
 import EditProfile from './pages/EditProfile.jsx';
+import Devs from './pages/Devs.jsx';
 
 
 
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
       {
         path: '/myPets',
         element: <MyPets />,
+      },
+      {
+        path: '/devs',
+        element: <Devs />,
       },
       {
         path: '/editPet/:id',
