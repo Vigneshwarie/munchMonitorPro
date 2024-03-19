@@ -43,7 +43,7 @@ export default function Devs() {
                         <Card.Img variant="top" src={devVIGGY} />
                         <Card.Body>
                             <Card.Title><strong>Viggy Sambandam</strong></Card.Title>
-                            <Card.Subtitle>@RToCastro</Card.Subtitle>
+                            <Card.Subtitle>@Vigneshwarie</Card.Subtitle>
                             <Card.Text>
                                 Back End Development/Javascript/GraphQL/JWT
                             </Card.Text>
@@ -61,7 +61,7 @@ export default function Devs() {
                         <Card.Img variant="top" src={devFRANK} />
                         <Card.Body>
                             <Card.Title><strong>Francisco Contreras</strong></Card.Title>
-                            <Card.Subtitle>@RToCastro</Card.Subtitle>
+                            <Card.Subtitle>@frankieee324</Card.Subtitle>
                             <Card.Text>
                                 Back End Development/Javascript/GraphQL/
                             </Card.Text>
@@ -79,7 +79,7 @@ export default function Devs() {
                         <Card.Img variant="top" src={devTASNEEM} />
                         <Card.Body>
                             <Card.Title><strong>Tasneem Halim</strong></Card.Title>
-                            <Card.Subtitle>@RToCastro</Card.Subtitle>
+                            <Card.Subtitle>@thalim-glam</Card.Subtitle>
                             <Card.Text>
                                 Front/Back End Development/Javascript/GraphQL
                             </Card.Text>
