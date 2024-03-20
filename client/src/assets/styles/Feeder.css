@@ -21,25 +21,48 @@
 
 
 .breakfast {
- background-color: #654678;
- padding: 50px;  
- box-shadow: 0 0 5px #654678; 
- margin: 10px;
- color: white;
+     background-color: #654678;
+     padding: 50px;  
+     box-shadow: 0 0 5px #654678; 
+     margin: 10px;
+     color: white;
+     align-items: center;
 }
 
 .lunch {
- background-color: #654678;
- padding: 50px;  
- box-shadow: 0 0 5px #654678; 
- margin: 10px;
- color: white;
+     background-color: #654678;
+     padding: 50px;  
+     box-shadow: 0 0 5px #654678; 
+     margin: 10px;
+     color: white;
 }
 
 .dinner {
- background-color: #654678;
- padding: 50px;  
- box-shadow: 0 0 5px #654678; 
- margin: 10px;
- color: white;
+     background-color: #654678;
+     padding: 50px;  
+     box-shadow: 0 0 5px #654678; 
+     margin: 10px;
+     color: white;
+}
+
+
+.btn.btn-primary.feederfrmbutton{
+     background-color: #DF4900;
+     color:white;
+     font-weight: bold;
+     border-color: #FFF;     
+     margin-top: 20px;
+     width: fit-content;
+}
+
+.feedertitleimage {
+     width: 170px;
+     height:100px;
+     text-align: center;
+}
+
+.feedercontrols {
+     margin: 0;
+     text-align: left;
+
 }

@@ -34,118 +34,119 @@ export default function Feeder() {
           );
      }
 
-  return (
-     <>
-          <Container className="namecontainer" >
-               <Row>
-                    <Col> <img src={username} /> **name here**</Col>
-               </Row>
-          </Container>
-          <Container className="namecontainer" >
-               <Row>
-                    <Col> <img src={petname} /> {petData.pet_name}</Col>
-               </Row>
-          </Container>
+     return (
+          <>
+               <Container className="namecontainer" >
+                    <Row>
+                         <Col> <img src={username} /> { }</Col>
+                    </Row>
+               </Container>
+               <Container className="namecontainer" >
+                    <Row>
+                         <Col> <img src={petname} /> {petData.pet_name}</Col>
+                    </Row>
+               </Container>
 
-          <Container className="notecontainer" >
-               <Row>
-                    <Col> <img src={notes} /> <br />{petData.pet_notes}</Col>
-               </Row>
-          </Container>
+               <Container className="notecontainer" >
+                    <Row>
+                         <Col> <img src={notes} /> <br />{petData.pet_notes}</Col>
+                    </Row>
+               </Container>
 
-          {/* Feeding Schedule */}
-          <br />
-          <img src={feedingschedule} />
-          <br />
-
-
-      {/* Breakfast section */}
-          <Container className="breakfast" >
-               <Row>
-                      <Col><img src={breakfast} />
-             
-                    <Form.Check type="radio" aria-label="radio 1" name="breakfasttype" label="Dry Food" value="Dry Food"/> 
-                    
-                    <Form.Check type="radio" aria-label="radio 2" name="breakfasttype" value="Wet Food"/>Wet Food
-                   
-                    <Form.Check type="radio" aria-label="radio 3" name="breakfasttype" value="Both"/> Both
+               {/* Feeding Schedule */}
+               <br />
+               <img src={feedingschedule} />
+               <br />
 
 
-                    <img src={medicine} />
-                    <Form.Check aria-label="option 1" className="medicine" />
-               </Col>
-               <Button
-               // disabled={!(userFormData.first_name && userFormData.last_name && userFormData.email && userFormData.password)}
-               type='submit'
-               variant='danger'>
-               Confirm Feeding
-               </Button>
-               </Row>
-          </Container>
+               {/* Breakfast section */}
+               <Container className="breakfast">
+                    <Row>
+                         <Col xs={12}>
+                              <img src={breakfast} className="feedertitleimage" />
+                         </Col>
+                    </Row>
+                    <Row>
+                         <Col md="auto">
+                              <Form.Check type="radio" name="breakfasttype" label="Dry" value="Dry Food" className="feedercontrols" />
+                         </Col>
+                         <Col md="auto" xs lg="2">
+                              <Form.Check type="radio" name="breakfasttype" label="Wet" value="Wet Food" className="feedercontrols" />
+                         </Col>
+                         <Col md="auto">
+                              <Form.Check type="radio" name="breakfasttype" label="Both" value="Both" className="feedercontrols" />
+                         </Col>
+                         <Col md="auto">
+                              <Form.Check name="breakfastmedicine" className="feedercontrols" type="checkbox" label="Medicine" />
+                         </Col>
+                    </Row>
+                    <Row>
+                         <Col xs={12}>
+                              <Button type='submit' className="feederfrmbutton"> Confirm Feeding </Button>
+                         </Col>
+                    </Row>
+               </Container>
 
+               {/* Lunch section */}
+               <Container className="lunch" >
+                    <Row>
+                         <Col xs={12}>
+                              <img src={lunch} className="feedertitleimage" />
+                         </Col>
+                    </Row>
+                    <Row>
+                         <Col md="auto">
+                              <Form.Check type="radio" name="lunchtype" label="Dry" value="Dry Food" className="feedercontrols" />
+                         </Col>
+                         <Col md="auto" xs lg="2">
+                              <Form.Check type="radio" name="lunchtype" label="Wet" value="Wet Food" className="feedercontrols" />
+                         </Col>
+                         <Col md="auto">
+                              <Form.Check type="radio" name="lunchtype" label="Both" value="Both" className="feedercontrols" />
+                         </Col>
+                         <Col md="auto">
+                              <Form.Check name="lunchmedicine" className="feedercontrols" type="checkbox" label="Medicine" />
+                         </Col>
+                    </Row>
+                    <Row>
+                         <Col xs={12}>
+                              <Button type='submit' className="feederfrmbutton"> Confirm Feeding </Button>
+                         </Col>
+                    </Row>
+               </Container>
 
+               {/* Dinner section */}
+               <Container className="dinner" >
+                    <Row>
+                         <Col xs={12}>
+                              <img src={dinner} className="feedertitleimage" />
+                         </Col>
+                    </Row>
+                    <Row>
+                         <Col md="auto">
+                              <Form.Check type="radio" name="dinnertype" label="Dry" value="Dry Food" className="feedercontrols" />
+                         </Col>
+                         <Col md="auto" xs lg="2">
+                              <Form.Check type="radio" name="dinnertype" label="Wet" value="Wet Food" className="feedercontrols" />
+                         </Col>
+                         <Col md="auto">
+                              <Form.Check type="radio" name="dinnertype" label="Both" value="Both" className="feedercontrols" />
+                         </Col>
+                         <Col md="auto">
+                              <Form.Check name="dinnermedicine" className="feedercontrols" type="checkbox" label="Medicine" />
+                         </Col>
+                    </Row>
+                    <Row>
+                         <Col xs={12}>
+                              <Button type='submit' className="feederfrmbutton"> Confirm Feeding </Button>
+                         </Col>
+                    </Row>
+               </Container>
 
-      {/* Lunch section */}
-      <Container className="lunch" >
-        <Row>
-          <Col><img src={lunch} />
-            <br />
-            Dry Food
-            <Form.Check type="radio" aria-label="radio 1" />
-
-            Wet Food
-            <Form.Check type="radio" aria-label="radio 2" />
-
-            Both
-            <Form.Check type="radio" aria-label="radio 3" />
-
-            <br />
-
-            <img src={medicine} />
-            <Form.Check aria-label="option 1" className="medicine" />
-          </Col>
-          <Button
-            // disabled={!(userFormData.first_name && userFormData.last_name && userFormData.email && userFormData.password)}
-            type='submit'
-            variant='danger'>
-            Confirm Feeding
-          </Button>
-        </Row>
-      </Container>
-
-
-      {/* Dinner section */}
-      <Container className="dinner" >
-        <Row>
-          <Col><img src={dinner} />
-            <br />
-            Dry Food
-            <Form.Check type="radio" aria-label="radio 1" />
-
-            Wet Food
-            <Form.Check type="radio" aria-label="radio 2" />
-
-            Both
-            <Form.Check type="radio" aria-label="radio 3" />
-
-            <br />
-
-            <img src={medicine} />
-            <Form.Check aria-label="option 1" className="medicine" />
-          </Col>
-          <Button
-            // disabled={!(userFormData.first_name && userFormData.last_name && userFormData.email && userFormData.password)}
-            type='submit'
-            variant='danger'>
-            Confirm Feeding
-          </Button>
-        </Row>
-      </Container>
-
-      <Button type='button' className="cancelbutton" >Cancel</Button>
-      <br />
-    </>
-  )
+               <Button type='button' className="cancelbutton" >Cancel</Button>
+               <br />
+          </>
+     );
 }
 
 
