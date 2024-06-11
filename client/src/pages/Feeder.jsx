@@ -34,6 +34,10 @@ export default function Feeder() {
           );
      }
 
+     function onCancelbtn() {
+          window.location.assign('/homepage');
+     }
+
      return (
           <>
                <Container className="namecontainer" >
@@ -143,7 +147,7 @@ export default function Feeder() {
                     </Row>
                </Container>
 
-               <Button type='button' className="cancelbutton" >Cancel</Button>
+               <Button type='button' className="cancelbutton" onClick={onCancelbtn}>Cancel</Button>
                <br />
           </>
      );
