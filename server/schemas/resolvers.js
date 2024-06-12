@@ -107,12 +107,14 @@ const resolvers = {
                }
           },
           createFeeder: async (parent, args) => {
+               console.log(898989);
+               console.log(args);
                try {
                     const updatedFeeder = await Feeder.create(args);
                     return updatedFeeder;
                } catch (err) {
                     console.log('Error in mutation while creating feeder: ', err);
-               }
+               } 
           },
           editFeeder: async (parent, args) => {
                try {
