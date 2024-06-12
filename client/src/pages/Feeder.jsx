@@ -38,8 +38,6 @@ export default function Feeder() {
           },
      });
 
-     console.log("Feeder Data==1=", feederData?.feeder||[]);
-
      const [createFeeder, { error: createError }] = useMutation(CREATE_FEEDER);
      const [editFeeder, { error: editError }] = useMutation(EDIT_FEEDER);
 
@@ -59,12 +57,8 @@ export default function Feeder() {
           const form = event.currentTarget;
           const breakfasttype = form.elements.breakfasttype.value;
           const breakfastmedicine = form.elements.breakfastmedicine.checked ? "Yes" : "No";
-          console.log("Feeder Data=2==", feederData);
+
           if (feederData && feederData.feeder) {
-               console.log("In edit feeder!");
-               console.log("Feeder Data=3==", feederData.feeder._id);
-               console.log("breakfasttype==", breakfasttype);
-               console.log("breakfastmedicine==", breakfastmedicine);
                try {
                     responseData = await editFeeder({
                          variables: {
@@ -82,7 +76,6 @@ export default function Feeder() {
                     console.log(err);
                }  
           } else {
-               console.log("In create feeder!");
                try {
                     responseData = await createFeeder({
                          variables: {
@@ -107,18 +100,14 @@ export default function Feeder() {
           }
      }
 
-       const handleLunchSubmit = async (event) => {
+     const handleLunchSubmit = async (event) => {
           event.preventDefault();
           let responseData;
           const form = event.currentTarget;
           const lunchtype = form.elements.lunchtype.value;
           const lunchmedicine = form.elements.lunchmedicine.checked ? "Yes" : "No";
-          console.log("Feeder Data=2==", feederData);
+
           if (feederData && feederData.feeder) {
-               console.log("In edit feeder!");
-               console.log("Feeder Data=3==", feederData.feeder._id);
-               console.log("lunchtype==", lunchtype);
-               console.log("lunchmedicine==", lunchmedicine);
                try {
                     responseData = await editFeeder({
                          variables: {
@@ -136,7 +125,6 @@ export default function Feeder() {
                     console.log(err);
                }  
           } else {
-               console.log("In create feeder!");
                try {
                     responseData = await createFeeder({
                          variables: {
@@ -156,6 +144,55 @@ export default function Feeder() {
                     }
                } catch (error) {
                     console.log("Error while creating the lunch info!");
+                    console.log(error);
+               }
+          }
+     }
+
+     const handleDinnerSubmit = async (event) => {
+          event.preventDefault();
+          let responseData;
+          const form = event.currentTarget;
+          const dinnertype = form.elements.dinnertype.value;
+          const dinnermedicine = form.elements.dinnermedicine.checked ? "Yes" : "No";
+
+          if (feederData && feederData.feeder) {
+               try {
+                    responseData = await editFeeder({
+                         variables: {
+                              _id: feederData.feeder._id,
+                              dinner_food_type: dinnertype,
+                              medicine_evening: dinnermedicine
+                         },
+                    });
+                    console.log(responseData);
+                    if (responseData.data) {
+                         window.location.assign('/homepage');
+                    }
+               } catch (err) {
+                    console.log("Error while editing the dinner info!");
+                    console.log(err);
+               }  
+          } else {
+               try {
+                    responseData = await createFeeder({
+                         variables: {
+                              feed_date: formattedDate,
+                              pet_id: id,
+                              breakfast_food_type: '',
+                              medicine_morning: '',
+                              lunch_food_type: '',
+                              medicine_afternoon: '',
+                              dinner_food_type: dinnertype,
+                              medicine_evening: dinnermedicine
+                         },
+                    });
+                    console.log(responseData);
+                    if (responseData.data) {
+                         window.location.assign('/homepage');
+                    }
+               } catch (error) {
+                    console.log("Error while creating the dinner info!");
                     console.log(error);
                }
           }
@@ -263,32 +300,37 @@ export default function Feeder() {
                </Form>
 
                {/* Dinner section */}
-               <Container className="dinner" >
-                    <Row>
-                         <Col xs={12}>
-                              <img src={dinner} className="feedertitleimage" />
-                         </Col>
-                    </Row>
-                    <Row>
-                         <Col md="auto">
-                              <Form.Check type="radio" name="dinnertype" label="Dry" value="Dry Food" className="feedercontrols" />
-                         </Col>
-                         <Col md="auto" xs lg="2">
-                              <Form.Check type="radio" name="dinnertype" label="Wet" value="Wet Food" className="feedercontrols" />
-                         </Col>
-                         <Col md="auto">
-                              <Form.Check type="radio" name="dinnertype" label="Both" value="Both" className="feedercontrols" />
-                         </Col>
-                         <Col md="auto">
-                              <Form.Check name="dinnermedicine" className="feedercontrols" type="checkbox" label="Medicine" />
-                         </Col>
-                    </Row>
-                    <Row>
-                         <Col xs={12}>
-                              <Button type='submit' className="feederfrmbutton"> Confirm Feeding </Button>
-                         </Col>
-                    </Row>
-               </Container>
+               <Form onSubmit={handleDinnerSubmit}>
+                    <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
+                         Error while saving the breakfast info!
+                    </Alert>
+                    <Container className="dinner" >
+                         <Row>
+                              <Col xs={12}>
+                                   <img src={dinner} className="feedertitleimage" />
+                              </Col>
+                         </Row>
+                         <Row>
+                              <Col md="auto">
+                                   <Form.Check type="radio" name="dinnertype" label="Dry" value="Dry Food" className="feedercontrols" />
+                              </Col>
+                              <Col md="auto" xs lg="2">
+                                   <Form.Check type="radio" name="dinnertype" label="Wet" value="Wet Food" className="feedercontrols" />
+                              </Col>
+                              <Col md="auto">
+                                   <Form.Check type="radio" name="dinnertype" label="Both" value="Both" className="feedercontrols" />
+                              </Col>
+                              <Col md="auto">
+                                   <Form.Check name="dinnermedicine" className="feedercontrols" type="checkbox" label="Medicine" />
+                              </Col>
+                         </Row>
+                         <Row>
+                              <Col xs={12}>
+                                   <Button type='submit' className="feederfrmbutton"> Confirm Feeding </Button>
+                              </Col>
+                         </Row>
+                    </Container>
+               </Form>
 
                <Button type='button' className="cancelbutton" onClick={onCancelbtn}>Cancel</Button>
                <br />
