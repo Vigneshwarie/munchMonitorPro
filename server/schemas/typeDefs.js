@@ -42,6 +42,8 @@ const typeDefs = `
           users: [User]
           pet(_id: ID!): Pet
           pets: [Pet]
+          feeder(pet_id: ID!, feed_date: String!): Feeder
+          feeders: [Feeder]
      }
 
      type Mutation {
@@ -51,7 +53,7 @@ const typeDefs = `
           editPet(_id: ID!, pet_notes: String): Pet
           deletePet(_id: ID!): Pet
           createFeeder(feed_date: String!, pet_id:ID, breakfast_food_type: String, medicine_morning: String, lunch_food_type: String, medicine_afternoon: String, dinner_food_type: String, medicine_evening: String): Feeder
-          editFeeder(id: ID!, breakfast_food_type: String, medicine_morning: String, lunch_food_type: String, medicine_afternoon: String, dinner_food_type: String, medicine_evening: String): Feeder
+          editFeeder(_id: ID!, breakfast_food_type: String, medicine_morning: String, lunch_food_type: String, medicine_afternoon: String, dinner_food_type: String, medicine_evening: String): Feeder
      }
 `;
 

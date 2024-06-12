@@ -1,7 +1,8 @@
 import React,  { useState, useEffect }  from "react";
 import { Form, Button, Container, Row, Col, Alert} from 'react-bootstrap';
 import "../assets/styles/Feeder.css";
-import feedingschedule from "../assets/feedingschedule.png"
+import feedingschedule from "../assets/feedingschedule.png";
+import { formatDateToCustomISOString } from "../utils/helper";
 
 // images for containers
 import breakfast from "../assets/breakfast.png"
@@ -13,14 +14,36 @@ import petname from "../assets/petname.png"
 import username from "../assets/username.png"
 import { useMutation, useQuery } from '@apollo/client';
 import { useParams } from 'react-router-dom';
-import { QUERY_PET } from '../utils/queries';
-import { CREATE_FEEDER } from '../utils/mutation';
+import { QUERY_PET, QUERY_FEEDER } from '../utils/queries';
+import { CREATE_FEEDER, EDIT_FEEDER } from '../utils/mutation';
 
 
 
 export default function Feeder() {
+     const { id } = useParams();
+     const date = new Date(); 
+     const formattedDate = formatDateToCustomISOString(date);
      const [showAlert, setShowAlert] = useState(false);
-     const [createFeeder, { error }] = useMutation(CREATE_FEEDER);
+
+     const { loading, data } = useQuery(QUERY_PET, {
+          variables: { _id: id },
+     });
+
+     const petData = data?.pet || [];
+
+     const { data: feederData } = useQuery(QUERY_FEEDER, {
+          variables: {
+               pet_id: id,
+               feed_date: formattedDate
+          },
+     });
+
+     console.log("Feeder Data==1=", feederData?.feeder||[]);
+
+     const [createFeeder, { error: createError }] = useMutation(CREATE_FEEDER);
+     const [editFeeder, { error: editError }] = useMutation(EDIT_FEEDER);
+
+     const error = createError || editError;
 
      useEffect(() => {
           if (error) {
@@ -30,55 +53,72 @@ export default function Feeder() {
           }
      }, [error]);
      
-
-     const { id } = useParams();
-     const { loading, data } = useQuery(QUERY_PET, {
-          variables: { _id: id },
-     });
-
-     const petData = data?.pet || [];
-
-     if (loading) {
-          return (
-               <h2>Loading Pet Data..</h2>
-          );
-     }
-
      const handleBreakfastSubmit = async (event) => {
           event.preventDefault();
+          let responseData;
           const form = event.currentTarget;
           const breakfasttype = form.elements.breakfasttype.value;
-          const breakfastmedicine = form.elements.breakfastmedicine.checked? "Yes" : "No";
-     //     const lunchtype = form.elements.lunchtype.value;
-      //    const lunchmedicine = form.elements.lunchmedicine.checked;
-      //    const dinnertype = form.elements.dinnertype.value;
-      //    const dinnermedicine = form.elements.dinnermedicine.checked;
-
-          try {
-               const { data } = await createFeeder({
-                    variables: {
-                         feed_date: new Date().toLocaleDateString("fr-CA", {year:"numeric", month: "2-digit", day:"2-digit"}),
-                         pet_id: id,
-                         breakfast_food_type: breakfasttype,
-                         medicine_morning: breakfastmedicine,
-                         lunch_food_type: '',
-                         medicine_afternoon: '',
-                         dinner_food_type: '',
-                         medicine_evening: '' 
-                    },
-               });
-               console.log("123456");
-               console.log("in feeder====", data);
-               if (data) {
-                    window.location.assign('/homepage');
+          const breakfastmedicine = form.elements.breakfastmedicine.checked ? "Yes" : "No";
+          console.log("Feeder Data=2==", feederData);
+          if (feederData && feederData.feeder) {
+               console.log("In edit feeder!");
+               console.log("Feeder Data=3==", feederData.feeder._id);
+               console.log("breakfasttype==", breakfasttype);
+               console.log("breakfastmedicine==", breakfastmedicine);
+               try {
+                    responseData = await editFeeder({
+                         variables: {
+                              _id: feederData.feeder._id,
+                              breakfast_food_type: breakfasttype,
+                              medicine_morning: breakfastmedicine,
+                              lunch_food_type: '',
+                              medicine_afternoon: '',
+                              dinner_food_type: '',
+                              medicine_evening: ''
+                         },
+                    });
+                    console.log(responseData);
+                    if (responseData.data) {
+                         window.location.assign('/homepage');
+                    }
+               } catch (err) {
+                     console.log("Error while editing the breakfast info!");
+                    console.log(err);
+               }  
+          } else {
+               console.log("In create feeder!");
+               try {
+                    responseData = await createFeeder({
+                         variables: {
+                              feed_date: formattedDate,
+                              pet_id: id,
+                              breakfast_food_type: breakfasttype,
+                              medicine_morning: breakfastmedicine,
+                              lunch_food_type: '',
+                              medicine_afternoon: '',
+                              dinner_food_type: '',
+                              medicine_evening: ''
+                         },
+                    });
+                    console.log(responseData);
+                    if (responseData.data) {
+                         window.location.assign('/homepage');
+                    }
+               } catch (error) {
+                    console.log("Error while creating the breakfast info!");
+                    console.log(error);
                }
-          } catch (err) {
-               console.log(err);
           }
      }
 
      function onCancelbtn() {
           window.location.assign('/homepage');
+     }
+
+     if (loading) {
+          return (
+               <h2>Loading Pet Data..</h2>
+          );
      }
 
      return (
