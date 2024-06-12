@@ -1,5 +1,6 @@
 const { User, Pet, Feeder } = require('../models');
 const { AuthenticationError, signToken } = require('../utils/auth');
+var {ObjectId} = require('mongodb'); 
 
 const resolvers = {
      Query: {
@@ -16,15 +17,27 @@ const resolvers = {
           pet: async (parent, args, context) => {
                try {
                     const pet = { ...args };
-                    console.log(888, pet);
                     if (context.user) {
-                         console.log(999);
                          return Pet.findById(pet._id);
                     }
                } catch (err) {
                     console.log('Error in query while retrieving pet details: ', err);
                }
           },
+          feeder: async (parent, args, context) => {
+               try {
+                    const feed = { ...args };
+                    const pet_id = new ObjectId(feed.pet_id);
+                    const my_date = feed.feed_date;
+                    if (context.user) {
+                         const feeder_data = await Feeder.findOne({ pet_id: pet_id , feed_date:  my_date }, {});
+                         console.log(9999, feeder_data);
+                         return feeder_data;
+                    }
+               } catch (err) {
+                    console.log('Error in query while retrieving feeder details: ', err);
+               }
+          }
      },
      Mutation: {
           login: async (parent, { email, password }) => {
@@ -118,6 +131,8 @@ const resolvers = {
           },
           editFeeder: async (parent, args) => {
                try {
+                    const feeder = { ...args };
+                    console.log(7777, feeder);
                     const updatedFeeder = await Feeder.findOneAndUpdate(
                          { _id: args._id },
                          { $set: args },

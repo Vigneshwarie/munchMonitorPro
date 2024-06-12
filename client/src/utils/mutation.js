@@ -67,6 +67,7 @@ export const CREATE_FEEDER = gql`
      mutation createFeeder($feed_date: String!, $pet_id: ID, $breakfast_food_type: String, $medicine_morning: String, $lunch_food_type: String, $medicine_afternoon: String, $dinner_food_type: String, $medicine_evening: String ) {
           createFeeder(feed_date: $feed_date, pet_id: $pet_id, breakfast_food_type: $breakfast_food_type, medicine_morning: $medicine_morning, lunch_food_type: $lunch_food_type, medicine_afternoon: $medicine_afternoon, dinner_food_type: $dinner_food_type, medicine_evening: $medicine_evening) {
                _id
+               feed_date
                pet_id
                breakfast_food_type
                medicine_morning
@@ -81,17 +82,15 @@ export const CREATE_FEEDER = gql`
 export const EDIT_FEEDER = gql`
      mutation editFeeder($_id:ID!, $breakfast_food_type: String, $medicine_morning: String, $lunch_food_type: String, $medicine_afternoon: String, $dinner_food_type: String, $medicine_evening: String ) {
           editFeeder(_id:$_id, breakfast_food_type: $breakfast_food_type, medicine_morning: $medicine_morning, lunch_food_type: $lunch_food_type, medicine_afternoon: $medicine_afternoon, dinner_food_type: $dinner_food_type, medicine_evening: $medicine_evening) {
-               feeder {
-                    _id
-                    pet_id
-                    breakfast_food_type
-                    medicine_morning
-                    lunch_food_type
-                    medicine_afternoon
-                    dinner_food_type
-                    medicine_evening
-
-               }
+               _id
+               feed_date
+               pet_id
+               breakfast_food_type
+               medicine_morning
+               lunch_food_type
+               medicine_afternoon
+               dinner_food_type
+               medicine_evening
           }
      }
 `;
