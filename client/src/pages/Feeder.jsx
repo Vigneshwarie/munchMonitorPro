@@ -248,13 +248,13 @@ export default function Feeder() {
                </Container>
                <Container className="namecontainer" >
                     <Row>
-                         <Col> <img src={petname} /> {petData.pet_name}</Col>
+                         <Col className="spicy-rice-bold"> <img src={petname} /> {petData.pet_name}</Col>
                     </Row>
                </Container>
 
                <Container className="notecontainer" >
                     <Row>
-                         <Col> <img src={notes} /> <br />{petData.pet_notes}</Col>
+                         <Col className="spicy-rice-bold"> <img src={notes} /> <br />{petData.pet_notes}</Col>
                     </Row>
                </Container>
 
