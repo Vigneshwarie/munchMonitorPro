@@ -17,12 +17,19 @@ import { useParams } from 'react-router-dom';
 import { QUERY_PET, QUERY_FEEDER } from '../utils/queries';
 import { CREATE_FEEDER, EDIT_FEEDER } from '../utils/mutation';
 
-
-
 export default function Feeder() {
      const { id } = useParams();
      const date = new Date(); 
      const formattedDate = formatDateToCustomISOString(date);
+     //console.log(formattedDate);
+     const [formData, setFormData] = useState({
+          breakfast_food_type: '',
+          lunch_food_type: '',
+          dinner_food_type: '',
+          medicine_morning: false,
+          medicine_afternoon: false,
+          medicine_evening: false
+     });
      const [showAlert, setShowAlert] = useState(false);
 
      const { loading, data } = useQuery(QUERY_PET, {
@@ -38,6 +45,22 @@ export default function Feeder() {
           },
      });
 
+     //console.log("feederData====", feederData);
+     //const feedDisplay = feederData?.feeder || [];
+
+     useEffect(() => {
+          if (feederData && feederData.feeder) {
+               setFormData({
+                    breakfast_food_type: feederData.feeder.breakfast_food_type,
+                    lunch_food_type: feederData.feeder.lunch_food_type,
+                    dinner_food_type: feederData.feeder.dinner_food_type,
+                    medicine_morning: feederData.feeder.medicine_morning === "Yes" ? true : false,
+                    medicine_afternoon: feederData.feeder.medicine_afternoon === "Yes" ? true : false,
+                    medicine_evening: feederData.feeder.medicine_evening === "Yes" ? true : false
+               });
+          } 
+     }, [feederData]);
+
      const [createFeeder, { error: createError }] = useMutation(CREATE_FEEDER);
      const [editFeeder, { error: editError }] = useMutation(EDIT_FEEDER);
 
@@ -50,21 +73,29 @@ export default function Feeder() {
                setShowAlert(false);
           }
      }, [error]);
+
+     const handleInputChange = (event) => {
+          const { name, value, type, checked } = event.target;
+          setFormData({
+               ...formData,
+               [name]: type === 'checkbox' ? checked : value
+          });
+     };
      
      const handleBreakfastSubmit = async (event) => {
           event.preventDefault();
           let responseData;
           const form = event.currentTarget;
-          const breakfasttype = form.elements.breakfasttype.value;
-          const breakfastmedicine = form.elements.breakfastmedicine.checked ? "Yes" : "No";
+          const breakfast_food_type = form.elements.breakfast_food_type.value;
+          const medicine_morning = form.elements.medicine_morning.checked ? "Yes" : "No";
 
           if (feederData && feederData.feeder) {
                try {
                     responseData = await editFeeder({
                          variables: {
                               _id: feederData.feeder._id,
-                              breakfast_food_type: breakfasttype,
-                              medicine_morning: breakfastmedicine
+                              breakfast_food_type: breakfast_food_type,
+                              medicine_morning: medicine_morning
                          },
                     });
                     console.log(responseData);
@@ -81,8 +112,8 @@ export default function Feeder() {
                          variables: {
                               feed_date: formattedDate,
                               pet_id: id,
-                              breakfast_food_type: breakfasttype,
-                              medicine_morning: breakfastmedicine,
+                              breakfast_food_type: breakfast_food_type,
+                              medicine_morning: medicine_morning,
                               lunch_food_type: '',
                               medicine_afternoon: '',
                               dinner_food_type: '',
@@ -104,16 +135,16 @@ export default function Feeder() {
           event.preventDefault();
           let responseData;
           const form = event.currentTarget;
-          const lunchtype = form.elements.lunchtype.value;
-          const lunchmedicine = form.elements.lunchmedicine.checked ? "Yes" : "No";
+          const lunch_food_type = form.elements.lunch_food_type.value;
+          const medicine_afternoon = form.elements.medicine_afternoon.checked ? "Yes" : "No";
 
           if (feederData && feederData.feeder) {
                try {
                     responseData = await editFeeder({
                          variables: {
                               _id: feederData.feeder._id,
-                              lunch_food_type: lunchtype,
-                              medicine_afternoon: lunchmedicine
+                              lunch_food_type: lunch_food_type,
+                              medicine_afternoon: medicine_afternoon
                          },
                     });
                     console.log(responseData);
@@ -132,8 +163,8 @@ export default function Feeder() {
                               pet_id: id,
                               breakfast_food_type: '',
                               medicine_morning: '',
-                              lunch_food_type: lunchtype,
-                              medicine_afternoon: lunchmedicine,
+                              lunch_food_type: lunch_food_type,
+                              medicine_afternoon: medicine_afternoon,
                               dinner_food_type: '',
                               medicine_evening: ''
                          },
@@ -153,16 +184,16 @@ export default function Feeder() {
           event.preventDefault();
           let responseData;
           const form = event.currentTarget;
-          const dinnertype = form.elements.dinnertype.value;
-          const dinnermedicine = form.elements.dinnermedicine.checked ? "Yes" : "No";
+          const dinner_food_type = form.elements.dinner_food_type.value;
+          const medicine_evening = form.elements.medicine_evening.checked ? "Yes" : "No";
 
           if (feederData && feederData.feeder) {
                try {
                     responseData = await editFeeder({
                          variables: {
                               _id: feederData.feeder._id,
-                              dinner_food_type: dinnertype,
-                              medicine_evening: dinnermedicine
+                              dinner_food_type: dinner_food_type,
+                              medicine_evening: medicine_evening
                          },
                     });
                     console.log(responseData);
@@ -183,8 +214,8 @@ export default function Feeder() {
                               medicine_morning: '',
                               lunch_food_type: '',
                               medicine_afternoon: '',
-                              dinner_food_type: dinnertype,
-                              medicine_evening: dinnermedicine
+                              dinner_food_type: dinner_food_type,
+                              medicine_evening: medicine_evening
                          },
                     });
                     console.log(responseData);
@@ -246,16 +277,27 @@ export default function Feeder() {
                          </Row>
                          <Row>
                               <Col md="auto">
-                                   <Form.Check type="radio" name="breakfasttype" label="Dry" value="Dry Food" className="feedercontrols" />
+                                   <Form.Check type="radio" name="breakfast_food_type" label="Dry" value="Dry Food" className="feedercontrols"
+                                   checked={formData.breakfast_food_type === "Dry Food"}
+                                   onChange={handleInputChange}
+                                    />
                               </Col>
                               <Col md="auto" xs lg="2">
-                                   <Form.Check type="radio" name="breakfasttype" label="Wet" value="Wet Food" className="feedercontrols" />
+                                   <Form.Check type="radio" name="breakfast_food_type" label="Wet" value="Wet Food" className="feedercontrols"
+                                   checked={formData.breakfast_food_type === "Wet Food"}
+                                   onChange={handleInputChange}
+                                    />
                               </Col>
                               <Col md="auto">
-                                   <Form.Check type="radio" name="breakfasttype" label="Both" value="Both" className="feedercontrols" />
+                                   <Form.Check type="radio" name="breakfast_food_type" label="Both" value="Both" className="feedercontrols"
+                                   checked={formData.breakfast_food_type === "Both"}
+                                   onChange={handleInputChange}
+                                    />
                               </Col>
                               <Col md="auto">
-                                   <Form.Check name="breakfastmedicine" className="feedercontrols" type="checkbox" label="Medicine" />
+                                   <Form.Check name="medicine_morning" className="feedercontrols" type="checkbox" label="Medicine"
+                                   checked={formData.medicine_morning}
+                                   onChange={handleInputChange}/>
                               </Col>
                          </Row>
                          <Row>
@@ -279,16 +321,28 @@ export default function Feeder() {
                          </Row>
                          <Row>
                               <Col md="auto">
-                                   <Form.Check type="radio" name="lunchtype" label="Dry" value="Dry Food" className="feedercontrols" />
+                                   <Form.Check type="radio" name="lunch_food_type" label="Dry" value="Dry Food" className="feedercontrols"
+                                   checked={formData.lunch_food_type === "Dry Food"}
+                                   onChange={handleInputChange}
+                                   />
                               </Col>
                               <Col md="auto" xs lg="2">
-                                   <Form.Check type="radio" name="lunchtype" label="Wet" value="Wet Food" className="feedercontrols" />
+                                   <Form.Check type="radio" name="lunch_food_type" label="Wet" value="Wet Food" className="feedercontrols"
+                                   checked={formData.lunch_food_type === "Wet Food"}
+                                   onChange={handleInputChange}
+                                   />
                               </Col>
                               <Col md="auto">
-                                   <Form.Check type="radio" name="lunchtype" label="Both" value="Both" className="feedercontrols" />
+                                   <Form.Check type="radio" name="lunch_food_type" label="Both" value="Both" className="feedercontrols"
+                                   checked={formData.lunch_food_type === "Both"}
+                                   onChange={handleInputChange}
+                                   />
                               </Col>
                               <Col md="auto">
-                                   <Form.Check name="lunchmedicine" className="feedercontrols" type="checkbox" label="Medicine" />
+                                   <Form.Check name="medicine_afternoon" className="feedercontrols" type="checkbox" label="Medicine"
+                                   checked={formData.medicine_afternoon}
+                                   onChange={handleInputChange}
+                                   />
                               </Col>
                          </Row>
                          <Row>
@@ -312,16 +366,28 @@ export default function Feeder() {
                          </Row>
                          <Row>
                               <Col md="auto">
-                                   <Form.Check type="radio" name="dinnertype" label="Dry" value="Dry Food" className="feedercontrols" />
+                                   <Form.Check type="radio" name="dinner_food_type" label="Dry" value="Dry Food" className="feedercontrols"
+                                   checked={formData.dinner_food_type === "Dry Food"}
+                                   onChange={handleInputChange}
+                                   />
                               </Col>
                               <Col md="auto" xs lg="2">
-                                   <Form.Check type="radio" name="dinnertype" label="Wet" value="Wet Food" className="feedercontrols" />
+                                   <Form.Check type="radio" name="dinner_food_type" label="Wet" value="Wet Food" className="feedercontrols"
+                                   checked={formData.dinner_food_type === "Wet Food"}
+                                   onChange={handleInputChange}
+                                   />
                               </Col>
                               <Col md="auto">
-                                   <Form.Check type="radio" name="dinnertype" label="Both" value="Both" className="feedercontrols" />
+                                   <Form.Check type="radio" name="dinner_food_type" label="Both" value="Both" className="feedercontrols"
+                                   checked={formData.dinner_food_type === "Both"}
+                                   onChange={handleInputChange}
+                                   />
                               </Col>
                               <Col md="auto">
-                                   <Form.Check name="dinnermedicine" className="feedercontrols" type="checkbox" label="Medicine" />
+                                   <Form.Check name="medicine_evening" className="feedercontrols" type="checkbox" label="Medicine"
+                                   checked={formData.medicine_evening}
+                                   onChange={handleInputChange}
+                                   />
                               </Col>
                          </Row>
                          <Row>
