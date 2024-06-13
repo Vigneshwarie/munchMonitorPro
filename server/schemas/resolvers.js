@@ -107,6 +107,7 @@ const resolvers = {
           deletePet: async (parent, { _id }, context) => {
                try {
                     if (context.user) {
+                         const feederData = await Feeder.deleteMany({ pet_id: _id });
                          const petData = await Pet.findByIdAndDelete({_id});
                          const updatedUser = await User.findOneAndUpdate(
                               { _id: context.user._id },
