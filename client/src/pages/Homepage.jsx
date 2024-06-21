@@ -115,6 +115,7 @@ function Homepage() {
                         return <PetCard key={pet._id} pet_name={pet.pet_name} pet_sex={pet.pet_sex} pet_type={pet.pet_type} pet_id={ pet._id} />
                     })}
               </div>
+              
         </>
     );
 }
