@@ -4,7 +4,9 @@ var { ObjectId } = require('mongodb');
 const OpenAI = require("openai");
 require('dotenv').config();
 
-const openai = new OpenAI({apiKey: process.env.OPENAI_API_KEY});
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+console.log(9999, process.env.OPENAI_API_KEY);
+console.log(9999, openai);
 
 const resolvers = {
      Query: {
@@ -149,6 +151,7 @@ const resolvers = {
           chatWithGPT: async (parent, { prompt }) => { 
                try {
                     console.log(99999101010101);
+                    console.log(prompt);
                     const contentChunks = [];
                     const response = await openai.chat. completions.create({
                          model: "gpt-3.5-turbo",
@@ -159,11 +162,8 @@ const resolvers = {
                          frequency_penalty: 0,
                          presence_penalty: 0,
                          stream: true,
-                    }, {
-                         headers: {
-                              'Content-Type': 'text/plain',
-                         },
                     });
+
                     console.log("response in resolvers:===", response);
 
                     if (typeof response[Symbol.asyncIterator] !== 'function') {
