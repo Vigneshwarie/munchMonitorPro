@@ -44,6 +44,7 @@ const typeDefs = `
           pets: [Pet]
           feeder(pet_id: ID!, feed_date: String!): Feeder
           feeders: [Feeder]
+          _empty: String
      }
 
      type Mutation {
@@ -54,6 +55,7 @@ const typeDefs = `
           deletePet(_id: ID!): Pet
           createFeeder(feed_date: String!, pet_id:ID, breakfast_food_type: String, medicine_morning: String, lunch_food_type: String, medicine_afternoon: String, dinner_food_type: String, medicine_evening: String): Feeder
           editFeeder(_id: ID!, breakfast_food_type: String, medicine_morning: String, lunch_food_type: String, medicine_afternoon: String, dinner_food_type: String, medicine_evening: String): Feeder
+          chatWithGPT(prompt: String!): String
      }
 `;
 

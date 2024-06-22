@@ -1,6 +1,10 @@
 const { User, Pet, Feeder } = require('../models');
 const { AuthenticationError, signToken } = require('../utils/auth');
-var {ObjectId} = require('mongodb'); 
+var { ObjectId } = require('mongodb'); 
+const OpenAI = require("openai");
+require('dotenv').config();
+
+const openai = new OpenAI({apiKey: process.env.OPENAI_API_KEY});
 
 const resolvers = {
      Query: {
@@ -55,8 +59,6 @@ const resolvers = {
                     //    console.log(token);
                     // While testing Loginform this returns the user details and token.
                     return { token, user };
-                    
-
                } catch (err) {
                     console.log('Error in mutation while logging in: ', err);
                }
@@ -142,6 +144,45 @@ const resolvers = {
                     return updatedFeeder;
                } catch (err) {
                     console.log('Error in mutation while editing feeder: ', err);
+               }
+          },
+          chatWithGPT: async (parent, { prompt }) => { 
+               try {
+                    console.log(99999101010101);
+                    const contentChunks = [];
+                    const response = await openai.chat. completions.create({
+                         model: "gpt-3.5-turbo",
+                         messages: [{ role: "user", content: prompt }],
+                         temperature: 1,
+                         max_tokens: 500,
+                         top_p: 1,
+                         frequency_penalty: 0,
+                         presence_penalty: 0,
+                         stream: true,
+                    }, {
+                         headers: {
+                              'Content-Type': 'text/plain',
+                         },
+                    });
+                    console.log("response in resolvers:===", response);
+
+                    if (typeof response[Symbol.asyncIterator] !== 'function') {
+                         throw new Error('Response is not iterable');
+                    }
+
+                    for await (const chunk of response) {
+                         const content = chunk.choices[0]?.delta?.content || "";
+                         if (content) {
+                              contentChunks.push(content);
+                         }
+                    }
+
+                    const finalContent = contentChunks.join('').replace(/\s+([,.?!;:])/g, '$1');
+                    return finalContent;
+         
+               } catch (error) {
+                    console.error(error);
+                    return error;
                }
           }
      }

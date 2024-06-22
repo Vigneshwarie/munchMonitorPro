@@ -94,3 +94,9 @@ export const EDIT_FEEDER = gql`
           }
      }
 `;
+
+export const CHATWITHGPT = gql`
+     mutation chatWithGPT($prompt: String!) {
+          chatWithGPT(prompt: $prompt) 
+     }
+`;
