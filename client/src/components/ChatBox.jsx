@@ -33,6 +33,8 @@ export default function ChatBox() {
           userInput: '',
      });
 
+     const [chatWithGPT, { data, loading, error }] = useMutation(CHATWITHGPT);
+
      const handleInputChange = (event) => {
           const { name, value } = event.target;
           setUserFormData({ ...userFormData, [name]: value });
@@ -44,13 +46,11 @@ export default function ChatBox() {
           const form = event.currentTarget;
           console.log("my form", form);
           console.log(userFormData);
-          const chatOutput = form.elements.chatOutput;
+          const chatOutput = document.getElementById("chatOutput");
           const prompt = userFormData.userInput;
+          let chatResponse;
           
           console.log("Prompt: ", prompt);
-
-          const [chatWithGpt, { data, loading, error }] = useMutation(CHATWITHGPT);
-
           console.log(321);
 
           if (prompt.trim()) {
@@ -58,31 +58,17 @@ export default function ChatBox() {
                console.log(123);
 
                try {
-                    const { response } = await chatWithGpt({
-                         variables: { ...userFormData }
+                    const { data } = await chatWithGPT({
+                         variables: { prompt }
                     });
-                    console.log("response==", response);
-                    console.log(response.data.chatWithGPT);
+                    console.log("response==", data);
+                    console.log(data.chatWithGPT);
+                    chatResponse = data.chatWithGPT;
                } catch (err) {
                     console.error(err);
                }
 
-               const response = await fetch("/generate", {
-                    method: "POST",
-                    headers: {
-                         "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({ prompt })
-               });
-
-               if (!response.ok) {
-                    const errorMessage = await response.json();
-                    console.error('Error: ', errorMessage.error);
-                    return;
-               }
-
-               const data = await response.text();
-               chatOutput.innerHTML += `<div class="gpt-message">${data}</div>`;
+               chatOutput.innerHTML += `<div class="gpt-message">${chatResponse}</div>`; 
           }
 
           setUserFormData({
@@ -106,7 +92,7 @@ export default function ChatBox() {
                          </div>
                         <div className="chat-footer">
                              <Form onSubmit={handleChatSubmit}>
-                                   <Form.Control size="lg" type="text" placeholder="Enter your question here.." name="userInput" onChange={handleInputChange} />
+                                   <Form.Control type="text" placeholder="Enter your question here.." name="userInput" onChange={handleInputChange} value={userFormData.userInput}/>
                                    <Button type='submit'
                                    className="btn btn-light" name="sendButton">
                                    Send
