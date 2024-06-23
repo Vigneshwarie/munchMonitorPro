@@ -41,33 +41,23 @@ export default function ChatBox() {
      };
 
      const handleChatSubmit = async (event) => {
-          console.log("hello");
           event.preventDefault();
           const form = event.currentTarget;
-          console.log("my form", form);
-          console.log(userFormData);
           const chatOutput = document.getElementById("chatOutput");
           const prompt = userFormData.userInput;
           let chatResponse;
-          
-          console.log("Prompt: ", prompt);
-          console.log(321);
 
           if (prompt.trim()) {
                chatOutput.innerHTML += `<div class="user-message">${prompt}</div>`;
-               console.log(123);
 
                try {
                     const { data } = await chatWithGPT({
                          variables: { prompt }
                     });
-                    console.log("response==", data);
-                    console.log(data.chatWithGPT);
                     chatResponse = data.chatWithGPT;
                } catch (err) {
                     console.error(err);
                }
-
                chatOutput.innerHTML += `<div class="gpt-message">${chatResponse}</div>`; 
           }
 
@@ -81,24 +71,22 @@ export default function ChatBox() {
                <div className="chat-logo" id="chatLogo">
                     <img src={chatgpt_logo} alt="ChatGPT Logo" className="img-thumbnail" />
                </div>
-               <div className="container-fluid">
-                    <div className="chat-window" id="chatWindow">
-                         <div className="chat-header">
-                              <span>Chat with OpenAI</span>
-                              <Button id="closeChat" type="button" className="btn btn-light">X</Button>
-                         </div>
-                         <div className="chat-body">
-                              <div id="chatOutput"></div>
-                         </div>
-                        <div className="chat-footer">
-                             <Form onSubmit={handleChatSubmit}>
-                                   <Form.Control type="text" placeholder="Enter your question here.." name="userInput" onChange={handleInputChange} value={userFormData.userInput}/>
-                                   <Button type='submit'
-                                   className="btn btn-light" name="sendButton">
-                                   Send
-                                  </Button>
-                              </Form>
-                         </div>
+               <div className="chat-window" id="chatWindow">
+                    <div className="chat-header">
+                         <span>Chat with OpenAI</span>
+                         <Button id="closeChat" type="button" className="btn btn-light">X</Button>
+                    </div>
+                    <div className="chat-body">
+                         <div id="chatOutput"></div>
+                    </div>
+                    <div>
+                         <Form onSubmit={handleChatSubmit} className="chat-footer">
+                              <Form.Control type="text" placeholder="Enter your question here.."  name="userInput" onChange={handleInputChange} value={userFormData.userInput} className=''/>
+                              <Button type="submit"
+                              className="btn btn-light" name="sendButton">
+                              Send
+                              </Button>
+                         </Form>
                     </div>
                </div>
           </>

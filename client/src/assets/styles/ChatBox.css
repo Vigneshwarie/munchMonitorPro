@@ -37,14 +37,15 @@
 
 .chat-footer {
      background: #DF4900;
+     color: white;
+     padding: 10px;
      display: flex;
-     padding: 8px;
-     justify-content: space-between;
+     font-weight: bold;
+     align-items: space-between;
 }
 
 #userInput {
      flex: 1;
-     margin-right: 10px;
 }
 
 .img-thumbnail {
@@ -57,14 +58,46 @@
 }
 
 .user-message {
-     color: #9378E6;
-     padding: 10px;
-     font-weight: bold;
+     color: #DF4900;
+     padding-right: 10px;
+     padding-left: 10px;
+     font-weight: bolder;
+     text-align: left;
 }
 
 .gpt-message {
      color: #3b3b3b;
-     padding: 10px;
+     padding-right: 10px;
+     padding-left: 10px;
+     text-align: justify;
 }
 
+@media (max-width: 768px) {
+     .chat-window {
+          width: 70%;
+          height: 50%;
+          bottom: 120px;
+          right: 20px;
+          border-radius: 0;
+     }
 
+     .chat-logo {
+          bottom: 10px;
+          right: 10px;
+     }
+}
+
+@media (max-width: 480px) {
+     .chat-window {
+          width: 70%;
+          height: 50%;
+          bottom: 120px;
+          right: 20px;
+          border-radius: 0;
+     }
+
+     .chat-logo {
+          bottom: 10px;
+          right: 10px;
+     }
+} 

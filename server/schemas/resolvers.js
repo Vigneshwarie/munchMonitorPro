@@ -5,8 +5,6 @@ const OpenAI = require("openai");
 require('dotenv').config();
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-console.log(9999, process.env.OPENAI_API_KEY);
-console.log(9999, openai);
 
 const resolvers = {
      Query: {
@@ -37,7 +35,6 @@ const resolvers = {
                     const my_date = feed.feed_date;
                     if (context.user) {
                          const feeder_data = await Feeder.findOne({ pet_id: pet_id , feed_date:  my_date }, {});
-                         console.log(9999, feeder_data);
                          return feeder_data;
                     }
                } catch (err) {
@@ -52,7 +49,6 @@ const resolvers = {
                     if (!user) {
                          throw AuthenticationError;
                     }
-
                     const correctPw = await user.isCorrectPassword(password);
                     if (!correctPw) {
                          throw AuthenticationError;
@@ -76,12 +72,9 @@ const resolvers = {
           },
           addPet: async (parent, args, context) => {
                try {
-                    console.log(58, { ...args });
                     if (context.user) {
                          const pet = { ...args };
                          const petData = await Pet.create(pet);
-                         console.log(66666);
-                         console.log(petData);
                          const updatedUser = await User.findOneAndUpdate(
                               { _id: context.user._id },
                               { $addToSet: { my_pets: petData._id } },
@@ -95,9 +88,6 @@ const resolvers = {
           },
           editPet: async (parent, {pet_notes, _id}) => {
                try {
-                    console.log(555);
-                    console.log(pet_notes, _id);
-
                     const updatedPet = await Pet.findOneAndUpdate(
                          { _id: _id },
                          { $set: { pet_notes: pet_notes } },
@@ -125,8 +115,6 @@ const resolvers = {
                }
           },
           createFeeder: async (parent, args) => {
-               console.log(898989);
-               console.log(args);
                try {
                     const updatedFeeder = await Feeder.create(args);
                     return updatedFeeder;
@@ -150,8 +138,6 @@ const resolvers = {
           },
           chatWithGPT: async (parent, { prompt }) => { 
                try {
-                    console.log(99999101010101);
-                    console.log(prompt);
                     const contentChunks = [];
                     const response = await openai.chat. completions.create({
                          model: "gpt-3.5-turbo",
@@ -163,23 +149,17 @@ const resolvers = {
                          presence_penalty: 0,
                          stream: true,
                     });
-
-                    console.log("response in resolvers:===", response);
-
                     if (typeof response[Symbol.asyncIterator] !== 'function') {
                          throw new Error('Response is not iterable');
                     }
-
                     for await (const chunk of response) {
                          const content = chunk.choices[0]?.delta?.content || "";
                          if (content) {
                               contentChunks.push(content);
                          }
                     }
-
                     const finalContent = contentChunks.join('').replace(/\s+([,.?!;:])/g, '$1');
-                    return finalContent;
-         
+                    return finalContent;  
                } catch (error) {
                     console.error(error);
                     return error;
